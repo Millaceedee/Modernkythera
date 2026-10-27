@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modernkythera – Antikythera Astronomical Clock Online</title>
+<meta name="description" content="Free online Antikythera-style astronomical clock: live moon phase, next full moon, eclipses, zodiac positions, planets, Wheel of the Year and daylight times.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#08060f">
+<!-- VAIHDA: korvaa YOUR-DOMAIN.com omalla osoitteellasi ennen julkaisua -->
+<link rel="canonical" href="https://YOUR-DOMAIN.com/">
+<link rel="icon" href="images/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="images/favicon-48.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Modernkythera">
+<meta property="og:title" content="Modernkythera – Antikythera Astronomical Clock Online">
+<meta property="og:description" content="Live moon phase, next full moon, eclipses, zodiac, planets and Wheel of the Year on a modern Antikythera-style clock.">
+<meta property="og:url" content="https://YOUR-DOMAIN.com/">
+<meta property="og:image" content="https://YOUR-DOMAIN.com/images/preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Modernkythera – Antikythera-style astronomical clock">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Modernkythera – Antikythera Astronomical Clock Online">
+<meta name="twitter:description" content="Live moon phase, next full moon, eclipses, zodiac, planets and Wheel of the Year.">
+<meta name="twitter:image" content="https://YOUR-DOMAIN.com/images/preview.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Modernkythera","alternateName":"Modernkythera Antikythera Astronomical Clock","url":"https://YOUR-DOMAIN.com/","description":"Online Antikythera-style astronomical clock showing moon phase, full moon names, eclipses, zodiac, planets, Metonic and Saros cycles, Wheel of the Year and daylight times.","applicationCategory":"EducationalApplication","operatingSystem":"Any","inLanguage":["en","fi"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"author":{"@type":"Person","name":"Millaceedee","url":"https://github.com/Millaceedee/"},"license":"https://opensource.org/licenses/MIT"}
+</script>
+<style>
+:root{--bronze:#b8944f;--gold:#e6c77a;--ink:#08060f;--moss:#5446a8;--glow:#b79cff;--text:#cdbf9a}
+*{box-sizing:border-box;margin:0}
+body{min-height:100vh;background:radial-gradient(ellipse at 50% 20%,#14103a 0,#07051a 55%,#02010a 100%);color:var(--text);font-family:Georgia,"Palatino Linotype",Palatino,serif;padding:20px 12px 48px;transition:background 1.5s ease,color 1.5s ease}
+body.day-mode{background:radial-gradient(ellipse at 50% 20%,#2e2656 0,#1f1a3d 55%,#130f28 100%);color:#e3dcd0}
+header{max-width:84vh;margin:0 auto 6px;text-align:center}
+h1{font-weight:400;font-size:clamp(22px,4vw,36px);letter-spacing:.18em;color:var(--gold);text-shadow:0 0 18px rgba(183,156,255,.35)}
+.sub{text-align:center;font-size:13px;color:#8a8266;margin:2px 0 10px;font-style:italic}
+#wrap{position:relative;width:min(94vw,78vh);margin:0 auto}
+#wrap::before{content:"";position:absolute;inset:-5%;border-radius:50%;background:radial-gradient(circle,rgba(183,156,255,.38) 58%,rgba(183,156,255,0) 72%);opacity:0;transition:opacity 1s;pointer-events:none}
+body.fm #wrap::before{opacity:1}
+#wrap svg{width:100%;height:auto;display:block;position:relative}
+#wrap #svgBase{pointer-events:none}
+#wrap #svg{position:absolute;inset:0;height:100%;cursor:zoom-in;touch-action:manipulation}
+#wrap #svg.zoomed{cursor:zoom-out}
+#spark{display:block}
+#tip{position:fixed;display:none;max-width:280px;z-index:9;pointer-events:none;padding:9px 12px;background:rgba(12,9,28,.96);border:1px solid #b8944f;border-radius:5px;font-size:13px;line-height:1.5;color:#cdbf9a;box-shadow:0 4px 24px rgba(0,0,0,.6),0 0 14px rgba(120,96,220,.25)}
+#tip b{color:#e6c77a;font-weight:400;font-size:14px}
+.mt{font-family:Georgia,serif;fill:var(--gold)}
+.mn{fill:#b3add4;font-style:italic}
+.dn{fill:#a88c55;font-size:7.5px;text-anchor:middle;dominant-baseline:central}
+.zs{fill:var(--gold);font-size:23px;text-anchor:middle;dominant-baseline:central;font-family:"Segoe UI Symbol","Noto Sans Symbols","Noto Sans Symbols 2","DejaVu Sans",serif}
+.pg{fill:#8f7a49;font-size:21px;text-anchor:middle;dominant-baseline:central;font-family:"Segoe UI Symbol","Noto Sans Symbols","DejaVu Sans",serif}
+.gr{fill:#9a92d6;font-size:13px;letter-spacing:.2em}
+.next{animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{50%{r:10;opacity:.6}}
+#panel{max-width:780px;margin:20px auto 0;border:1px solid #3a3320;background:rgba(10,14,13,.85);border-radius:6px;padding:18px 20px;box-shadow:inset 0 0 40px rgba(96,76,190,.2)}
+#now{text-align:center;font-size:15px;color:#8a8266;margin-bottom:14px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:560px){.cols{grid-template-columns:1fr}}
+.k{font-size:13px;color:#7c7456;margin-bottom:3px}
+.v{font-size:20px;color:var(--gold);line-height:1.3}
+.s{font-size:14px;color:var(--text);margin-top:2px}
+.bar{height:4px;background:#241f3d;margin-top:8px;border-radius:2px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--moss),#dfe6ef);border-radius:2px}
+#chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px;padding-top:14px;border-top:1px solid #2a2618}
+.chip{font-size:13px;padding:4px 9px;border:1px solid #3a3320;border-radius:14px;color:#a89c78}
+.chip.n{border-color:var(--glow);color:#d9ccff;box-shadow:0 0 10px rgba(183,156,255,.3)}
+.chip.p{opacity:.45}
+.ctl{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:16px;align-items:center}
+button{font:inherit;font-size:14px;background:transparent;color:var(--gold);border:1px solid var(--bronze);border-radius:4px;padding:6px 14px;cursor:pointer}
+button:hover,button.on{background:#2a2414}
+button:focus-visible{outline:2px solid var(--glow);outline-offset:2px}
+.ll{width:82px;font:inherit;font-size:14px;background:#0b0919;color:#e6c77a;border:1px solid #4a3f22;border-radius:4px;padding:2px 6px}
+.lg{font-size:12.5px;color:#7c7456;text-align:center;margin-top:14px;line-height:1.6}
+.fmnote{text-align:center;color:#d9ccff;margin-bottom:12px;font-size:16px;display:none}
+body.fm .fmnote{display:block}
+
+/* Alaosan info-laatikot */
+.footer-info-box{max-width:780px;margin:24px auto 0;border:1px solid #3a3320;background:rgba(12,9,24,0.7);border-radius:6px;padding:16px 20px;font-size:13px;color:#9e9474;line-height:1.5}
+.footer-info-box h3{color:var(--gold);font-weight:400;margin-bottom:6px;font-size:14.5px}
+.author-credit{margin-top:12px;padding-top:10px;border-top:1px solid #2a2618;font-size:12px;color:#7c7456;text-align:center}
+.author-credit a{color:var(--gold);text-decoration:underline}
+.author-credit a:hover{color:var(--glow)}
+
+/* Tähtitaivas (vain yöllä) */
+#stars{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:1;transition:opacity 1.5s ease;overflow:hidden}
+body.day-mode #stars{opacity:0}
+#stars i{position:absolute;left:0;top:0;width:1px;height:1px;animation:twinkle var(--d,3s) ease-in-out infinite;animation-delay:var(--w,0s);will-change:opacity}
+@keyframes twinkle{0%,100%{opacity:.2}50%{opacity:1}}
+@media(prefers-reduced-motion:reduce){#stars i{animation:none;opacity:.7}}
+
+/* Päivätilan pehmeämmät paneelit */
+#panel,.footer-info-box{transition:background 1.5s ease,border-color 1.5s ease}
+body.day-mode #panel{background:rgba(20,15,42,.82);border-color:#5b4d8f}
+body.day-mode .footer-info-box{background:rgba(20,15,42,.65);border-color:#5b4d8f;color:#c4bbd8}
+body.day-mode .sub,body.day-mode .k,body.day-mode .lg,body.day-mode #now{color:#b3a9cf}
+body.day-mode .author-credit{color:#a499c4;border-top-color:#463b73}
+
+/* Teemaan sopivat spinner-nuolet */
+.spin{display:inline-flex;align-items:stretch;border:1px solid #4a3f22;border-radius:4px;background:#0b0919;overflow:hidden}
+.spin .ll{width:68px;border:0;border-radius:0;background:transparent;-moz-appearance:textfield;appearance:textfield}
+.spin .ll::-webkit-inner-spin-button,.spin .ll::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.spin:focus-within{border-color:var(--glow);box-shadow:0 0 8px rgba(183,156,255,.35)}
+.sb{display:flex;flex-direction:column;border-left:1px solid #4a3f22}
+.sb button{flex:1;padding:0 6px;font-size:8px;line-height:1;border:0;border-radius:0;color:var(--gold);background:linear-gradient(#2a2250,#171232);cursor:pointer}
+.sb button+button{border-top:1px solid #4a3f22}
+.sb button:hover{background:linear-gradient(#4a3d8a,#2d2460);color:#fff}
+.sb button:active{background:#5446a8}
+</style>
+</head>
+<body>
+<main>
+<noscript><p style="text-align:center;padding:20px">Modernkythera is an interactive Antikythera-style astronomical clock showing the moon phase, next full moon, eclipses, zodiac, planets and the Wheel of the Year. Please enable JavaScript to see it.</p></noscript>
+<header>
+  <h1 id="t-title">Modernkythera</h1>
+  <p class="sub" id="t-sub">modern Antikythera-style astronomical clock</p>
+</header>
+
+<div id="wrap">
+<svg id="svgBase" viewBox="-500 -500 1000 1000" aria-hidden="true">
+<defs>
+<radialGradient id="brz" cx="40%" cy="35%" r="75%"><stop offset="0" stop-color="#e0c479"/><stop offset=".55" stop-color="#9a7a38"/><stop offset="1" stop-color="#4d3a18"/></radialGradient>
+<radialGradient id="plate" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#1c1640"/><stop offset=".7" stop-color="#0f0b22"/><stop offset="1" stop-color="#0a0820"/></radialGradient>
+<filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<circle r="496" fill="url(#plate)" stroke="url(#brz)" stroke-width="6"/>
+<g id="stat"></g>
+</svg>
+<svg id="svg" viewBox="-500 -500 1000 1000" role="img" aria-label="Modernkythera clock">
+<g id="ring"></g>
+<g id="gears"></g>
+<g id="subd"></g>
+<g id="dial"></g>
+<g id="hands"></g>
+</svg>
+</div>
+
+<section id="panel">
+<div id="now"></div>
+<div class="fmnote" id="t-fmnote">🌕 Full Moon in progress</div>
+<div class="cols">
+<div><div class="k" id="t-phLabel">Moon Phase</div><div class="v" id="ph"></div><div class="s" id="ph2"></div><div class="bar"><i id="bar"></i></div></div>
+<div><div class="k" id="t-nfLabel">Next Full Moon</div><div class="v" id="nf"></div><div class="s" id="nf2"></div></div>
+</div>
+<div class="cols" style="margin-top:16px">
+<div><div class="k" id="t-szLabel">Sun & Moon in Zodiac</div><div class="v" id="sz"></div><div class="s" id="sz2"></div></div>
+<div><div class="k" id="t-seLabel">Next Wheel of the Year Festival</div><div class="v" id="se"></div><div class="s" id="se2"></div></div>
+</div>
+<div class="cols" style="margin-top:16px">
+<div><div class="k" id="t-ecLabel">Next Eclipse</div><div class="v" id="ec"></div><div class="s" id="ec2"></div></div>
+<div><div class="k" id="t-mtLabel">Antikythera Gears & Cycles</div><div class="v" id="mt"></div><div class="s" id="mt2"></div></div>
+</div>
+<div style="margin-top:16px"><div class="k" id="t-plLabel">Planets in Zodiac</div><div class="v" id="pl" style="font-size:17px"></div></div>
+<div style="margin-top:16px">
+  <div class="k" style="display:flex;align-items:center;flex-wrap:wrap;gap:6px">
+    <span id="t-sunLabel">Daylight</span> · <span id="t-latLabel">lat</span>
+    <span class="spin"><input id="lat" type="number" step="0.01" class="ll"><span class="sb"><button type="button" data-d="1" aria-label="+">▲</button><button type="button" data-d="-1" aria-label="−">▼</button></span></span>
+    <span id="t-lonLabel">lon</span>
+    <span class="spin"><input id="lon" type="number" step="0.01" class="ll"><span class="sb"><button type="button" data-d="1" aria-label="+">▲</button><button type="button" data-d="-1" aria-label="−">▼</button></span></span>
+    <button id="locBtn" onclick="useMyLoc()" style="font-size:12px;padding:2px 8px;margin-left:4px">📍 <span id="t-locBtn">Locate me</span></button>
+  </div>
+  <div class="v" id="sun1"></div><div class="s" id="sun2"></div>
+  <svg id="spark" viewBox="0 0 365 60" style="width:100%;height:auto;margin-top:8px"></svg>
+</div>
+<div id="eclc" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:16px"></div>
+<div id="chips"></div>
+<p class="lg" id="t-instructions">Hover or tap any part of the clock for details. Click the clock to zoom in/out.</p>
+<div class="ctl">
+<button data-s="1" class="on" id="t-btn1">Real-time</button>
+<button data-s="86400" id="t-btn2">1 day / s</button>
+<button data-s="2592000" id="t-btn3">1 month / s</button>
+<button id="langBtn" onclick="toggleLang()">FI / EN</button>
+</div>
+</section>
+
+<!-- Info-laatikko ja tekijätiedot -->
+<div class="footer-info-box">
+  <h3 id="t-antih3">What was the original Antikythera mechanism?</h3>
+  <p id="t-antidesc">Discovered in an ancient Greek shipwreck around 1901, the Antikythera mechanism (c. 100–150 BC) is considered the world's oldest analog computer. It was an ingenious bronze gear system used to track astronomical cycles, predict eclipses, and model the positions of the sun, moon, and planets.</p>
+  
+  <p id="t-featdesc" style="margin-top:8px">Modernkythera shows the current moon phase, the next full moon with its traditional name (Wolf Moon, Hunter's Moon, Harvest Moon and more), solar and lunar eclipses, the sun and moon in the zodiac, planet positions, the Metonic and Saros cycles, Wheel of the Year festivals such as Samhain, Yule and Ostara, and daylight length for your location.</p>
+  <div class="author-credit" id="t-author">
+    Original creation by <a href="https://github.com/Millaceedee/" target="_blank">Millaceedee</a> © 2026. Licensed under the MIT License.<br>
+    You are welcome to learn from, modify and build upon this project. Please retain the original author credit and license notice.
+  </div>
+</div>
+</main>
+
+<script>
+// Tuikkivat tähdet (näkyvät vain yötilassa)
+(function(){
+  const s=document.createElement('div');s.id='stars';
+  for(let L=0;L<6;L++){
+    const layer=document.createElement('i'),sh=[];
+    for(let j=0;j<28;j++){
+      const x=(Math.random()*100).toFixed(1),y=(Math.random()*100).toFixed(1),sp=(Math.random()*1.1+.2).toFixed(2);
+      sh.push(`${x}vw ${y}vh 3px ${sp}px rgba(220,210,255,.9)`);
+    }
+    layer.style.cssText=`box-shadow:${sh.join(',')};--d:${(2.2+Math.random()*3.5).toFixed(1)}s;--w:-${(Math.random()*6).toFixed(1)}s`;
+    s.appendChild(layer);
+  }
+  document.body.appendChild(s);
+})();
+
+let lang = 'en';
+try{
+  const sl=localStorage.getItem('modernkythera_lang');
+  if(sl==='fi'||sl==='en')lang=sl;
+  else if((navigator.language||'').toLowerCase().startsWith('fi'))lang='fi';
+}catch(e){}
+const TRANSLATIONS = {
+  fi: {
+    title: "Modernkythera – Antikythera-tyylinen tähtitieteellinen kello",
+    metaDesc: "Ilmainen Antikytheran koneiston tyylinen tähtikello: kuun vaihe, seuraava täysikuu, pimennykset, eläinrata, planeetat, vuoden pyörä ja päivän pituus.",
+    featdesc: "Modernkythera näyttää kuun nykyisen vaiheen, seuraavan täysikuun perinteisine nimineen (Susikuu, Metsästäjän kuu, Sadonkorjuukuu ja muut), aurinko- ja kuunpimennykset, auringon ja kuun paikan eläinradalla, planeettojen sijainnit, Metonin ja Saroksen kehät, vuoden pyörän juhlat kuten Samhainin, Yulen ja Ostaran sekä päivän pituuden sijaintisi mukaan.",
+    sub: "moderni antikythera-tyylinen kuukello",
+    antih3: "Mikä alkuperäinen Antikytheran koneisto oli?",
+    antidesc: "Noin vuonna 1901 antiikin kreikkalaisesta hylsystä löytynyt Antikytheran koneisto (n. 100–150 eaa.) on maailman vanhimpana tunnettuna analogisena tietokoneena pidetty laite. Se oli nerokas pronssinen hammaspyöräjärjestelmä, jolla laskettiin tähtitieteellisiä syklejä, ennustettiin pimennyksiä sekä mallinnettiin aurinkoa, kuuta ja planeettoja.",
+    author: 'Alkuperäinen luomus: <a href="https://github.com/Millaceedee/" target="_blank">Millaceedee</a> © 2026. Lisensoitu MIT-lisenssillä.<br>Projektia saa vapaasti opiskella, muokata ja kehittää edelleen. Säilytä alkuperäinen tekijätieto ja lisenssi.',
+    fmnote: "🌕 Täysikuu on käynnissä",
+    phLabel: "Kuun vaihe",
+    nfLabel: "Seuraava täysikuu",
+    szLabel: "Aurinko ja Kuu eläinradalla",
+    seLabel: "Seuraava vuoden pyörän juhla",
+    ecLabel: "Seuraava pimennys",
+    mtLabel: "Antikytheran kehät",
+    plLabel: "Planeetat eläinradalla",
+    sunLabel: "Päivän valo",
+    latLabel: "leveys",
+    lonLabel: "pituus",
+    locBtn: "Paikanna minut",
+    instructions: "Osoita hiirellä tai napauta mitä tahansa kellon osaa saadaksesi selityksen. Klikkaa kelloa zoomataksesi lähemmäs.",
+    btn1: "Reaaliaika",
+    btn2: "1 päivä / s",
+    btn3: "1 kuukausi / s",
+    months: ['Tammikuu','Helmikuu','Maaliskuu','Huhtikuu','Toukokuu','Kesäkuu','Heinäkuu','Elokuu','Syyskuu','Lokakuu','Marraskuu','Joulukuu'],
+    zodiac: ['Oinas','Härkä','Kaksoset','Rapu','Leijona','Neitsyt','Vaaka','Skorpioni','Jousimies','Kauris','Vesimies','Kalat'],
+    planets: ['Merkurius','Venus','Mars','Jupiter','Saturnus'],
+    seasons: {'Kevätpäiväntasaus':'Kevätpäiväntasaus','Kesäpäivänseisaus':'Kesäpäivänseisaus','Syyspäiväntasaus':'Syyspäiväntasaus','Talvipäivänseisaus':'Talvipäivänseisaus'}
+  },
+  en: {
+    title: "Modernkythera – Antikythera Astronomical Clock Online",
+    metaDesc: "Free online Antikythera-style astronomical clock: live moon phase, next full moon, eclipses, zodiac positions, planets, Wheel of the Year and daylight times.",
+    featdesc: "Modernkythera shows the current moon phase, the next full moon with its traditional name (Wolf Moon, Hunter's Moon, Harvest Moon and more), solar and lunar eclipses, the sun and moon in the zodiac, planet positions, the Metonic and Saros cycles, Wheel of the Year festivals such as Samhain, Yule and Ostara, and daylight length for your location.",
+    sub: "modern Antikythera-style astronomical clock",
+    antih3: "What was the original Antikythera mechanism?",
+    antidesc: "Discovered in an ancient Greek shipwreck around 1901, the Antikythera mechanism (c. 100–150 BC) is considered the world's oldest analog computer. It was an ingenious bronze gear system used to track astronomical cycles, predict eclipses, and model the positions of the sun, moon, and planets.",
+    author: 'Original creation by <a href="https://github.com/Millaceedee/" target="_blank">Millaceedee</a> © 2026. Licensed under the MIT License.<br>You are welcome to learn from, modify and build upon this project. Please retain the original author credit and license notice.',
+    fmnote: "🌕 Full Moon in progress",
+    phLabel: "Moon Phase",
+    nfLabel: "Next Full Moon",
+    szLabel: "Sun & Moon in Zodiac",
+    seLabel: "Next Wheel of the Year Festival",
+    ecLabel: "Next Eclipse",
+    mtLabel: "Antikythera Gears & Cycles",
+    plLabel: "Planets in Zodiac",
+    sunLabel: "Daylight",
+    latLabel: "lat",
+    lonLabel: "lon",
+    locBtn: "Locate me",
+    instructions: "Hover or tap any part of the clock for details. Click the clock to zoom in/out.",
+    btn1: "Real-time",
+    btn2: "1 day / s",
+    btn3: "1 month / s",
+    months: ['January','February','March','April','May','June','July','August','September','October','November','December'],
+    zodiac: ['Aries','Taurus','Gemini','Cancer','Leo','Virgo','Libra','Scorpio','Sagittarius','Capricorn','Aquarius','Pisces'],
+    planets: ['Mercury','Venus','Mars','Jupiter','Saturn'],
+    seasons: {'Kevätpäiväntasaus':'Spring Equinox','Kesäpäivänseisaus':'Summer Solstice','Syyspäiväntasaus':'Autumn Equinox','Talvipäivänseisaus':'Winter Solstice'}
+  }
+};
+
+function toggleLang(){
+  lang = lang === 'fi' ? 'en' : 'fi';
+  try{localStorage.setItem('modernkythera_lang',lang)}catch(e){}
+  applyLang();
+}
+function applyLang(){
+  document.documentElement.lang = lang;
+  document.title = TRANSLATIONS[lang].title;
+  const md=document.querySelector('meta[name="description"]');if(md)md.content=TRANSLATIONS[lang].metaDesc;
+  $('t-featdesc').textContent = TRANSLATIONS[lang].featdesc;
+  $('t-sub').textContent = TRANSLATIONS[lang].sub;
+  $('t-antih3').textContent = TRANSLATIONS[lang].antih3;
+  $('t-antidesc').textContent = TRANSLATIONS[lang].antidesc;
+  $('t-author').innerHTML = TRANSLATIONS[lang].author;
+  $('t-fmnote').textContent = TRANSLATIONS[lang].fmnote;
+  $('t-phLabel').textContent = TRANSLATIONS[lang].phLabel;
+  $('t-nfLabel').textContent = TRANSLATIONS[lang].nfLabel;
+  $('t-szLabel').textContent = TRANSLATIONS[lang].szLabel;
+  $('t-seLabel').textContent = TRANSLATIONS[lang].seLabel;
+  $('t-ecLabel').textContent = TRANSLATIONS[lang].ecLabel;
+  $('t-mtLabel').textContent = TRANSLATIONS[lang].mtLabel;
+  $('t-plLabel').textContent = TRANSLATIONS[lang].plLabel;
+  $('t-sunLabel').textContent = TRANSLATIONS[lang].sunLabel;
+  $('t-latLabel').textContent = TRANSLATIONS[lang].latLabel;
+  $('t-lonLabel').textContent = TRANSLATIONS[lang].lonLabel;
+  $('t-locBtn').textContent = TRANSLATIONS[lang].locBtn;
+  $('t-instructions').textContent = TRANSLATIONS[lang].instructions;
+  $('t-btn1').textContent = TRANSLATIONS[lang].btn1;
+  $('t-btn2').textContent = TRANSLATIONS[lang].btn2;
+  $('t-btn3').textContent = TRANSLATIONS[lang].btn3;
+  $('langBtn').textContent = lang === 'fi' ? 'EN / FI' : 'FI / EN';
+  metG._lbl.textContent=lang==='fi'?'Meton · 19 v':'Meton · 19 y';sarG._lbl.textContent=lang==='fi'?'Saros · 223 kk':'Saros · 223 m';
+  for(const k in seasCache)delete seasCache[k];for(const k in wCache)delete wCache[k];
+  build(st.y);
+  panel(new Date(simMs));
+}
+
+const SYN=29.5305886, CYC=SYN*86400, NEW=Date.UTC(2000,0,6,18,14,0)/1000;
+const BASE=['Wolf Moon','Snow Moon','Worm Moon','Pink Moon','Flower Moon','Strawberry Moon','Buck Moon','Sturgeon Moon','Corn Moon',"Hunter's Moon",'Beaver Moon','Cold Moon'];
+const MOON_FI={'Wolf Moon':'Susikuu','Snow Moon':'Lumikuu','Worm Moon':'Matokuu','Pink Moon':'Vaaleanpunainen kuu','Flower Moon':'Kukkakuu','Strawberry Moon':'Mansikkakuu','Buck Moon':'Peurakuu','Sturgeon Moon':'Sampikuu','Corn Moon':'Maissikuu',"Hunter's Moon":'Metsästäjän kuu','Beaver Moon':'Majavakuu','Cold Moon':'Pakkaskuu','Harvest Moon':'Sadonkorjuukuu','Blue Moon':'Sininen kuu'};
+const mname=n=>lang==='fi'?(MOON_FI[n]||n):n;
+const EK_FI={total:'täydellinen',annular:'rengasmainen',partial:'osittainen',penumbral:'puolivarjo',hybrid:'hybridi'};
+const ek=k=>lang==='fi'?(EK_FI[k]||k):k;
+const SEASSUB={fi:['Ostara','Litha · juhannus','Mabon','Yule · valon syntymä'],en:['Ostara','Litha · Midsummer','Mabon','Yule · birth of the light']};
+const PHASES_FI=[
+ {n:'Uusikuu',i:'🌑',a:0,b:1.85},{n:'Kasvava sirppi',i:'🌒',a:1.85,b:7.38},{n:'Ensimmäinen neljännes',i:'🌓',a:7.38,b:9.22},
+ {n:'Kasvava puolikuu',i:'🌔',a:9.22,b:14.77},{n:'Täysikuu',i:'🌕',a:14.77,b:16.61},{n:'Vähenevä puolikuu',i:'🌖',a:16.61,b:22.15},
+ {n:'Viimeinen neljännes',i:'🌗',a:22.15,b:24},{n:'Vähenevä sirppi',i:'🌘',a:24,b:SYN}];
+const PHASES_EN=[
+ {n:'New Moon',i:'🌑',a:0,b:1.85},{n:'Waxing Crescent',i:'🌒',a:1.85,b:7.38},{n:'First Quarter',i:'🌓',a:7.38,b:9.22},
+ {n:'Waxing Gibbous',i:'🌔',a:9.22,b:14.77},{n:'Full Moon',i:'🌕',a:14.77,b:16.61},{n:'Waning Gibbous',i:'🌖',a:16.61,b:22.15},
+ {n:'Last Quarter',i:'🌗',a:22.15,b:24},{n:'Waning Crescent',i:'🌘',a:24,b:SYN}];
+const ZOD=['♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓'].map(s=>s+'\uFE0E');
+const PLAN=['☉','☽','☿','♀','♂','♃','♄'].map(s=>s+'\uFE0E');
+const NS='http://www.w3.org/2000/svg';
+const $=id=>document.getElementById(id);
+function el(t,a,p,x){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(x!=null)e.textContent=x;if(p)p.appendChild(e);return e}
+const P=(r,a)=>{const t=a*Math.PI/180;return[+(r*Math.sin(t)).toFixed(2),+(-r*Math.cos(t)).toFixed(2)]};
+const mod=(x,m)=>((x%m)+m)%m;
+
+function moonData(d){
+ const ms=d.getTime(),pv=prevFM(ms),nx=nextFM(ms),f=mod(.5+(ms-pv)/(nx-pv),1),age=f*SYN;
+ const ill=(1-Math.cos(f*2*Math.PI))/2;
+ const phases = lang==='fi'?PHASES_FI:PHASES_EN;
+ const phase=phases.find(p=>age>=p.a&&age<p.b)||phases[7];
+ return{age,ill,phase,f,toFull:Math.min(ms-pv,nx-ms)/864e5};
+}
+const cache={};
+function fmList(y){
+ if(cache[y])return cache[y];
+ const k0=Math.ceil((Date.UTC(y-1,11,15)/1000-NEW)/CYC-.5),a=[];
+ for(let k=k0;;k++){const t=new Date(meeus(k+.5));if(t.getFullYear()>y)break;if(t.getFullYear()===y)a.push({t,name:BASE[t.getMonth()]})}
+ const eq=new Date(y,8,22);let hi=0;
+ a.forEach((f,i)=>{if(Math.abs(f.t-eq)<Math.abs(a[hi].t-eq))hi=i});
+ a[hi].name='Harvest Moon';if(a[hi+1])a[hi+1].name="Hunter's Moon";
+ const seen={};a.forEach(f=>{const m=f.t.getMonth();if(seen[m]&&f.name===BASE[m])f.name='Blue Moon';seen[m]=1});
+ return cache[y]=a;
+}
+let _fmB=null;
+function fmBracket(ms){
+ if(_fmB&&ms>=_fmB[0]&&ms<_fmB[1])return _fmB;
+ const k0=Math.round((ms/1000-NEW)/CYC-.5);let pv=null,nx=null;
+ for(let n=k0-3;n<k0+4;n++){const t=meeus(n+.5);if(t<=ms)pv=t;else{nx=t;break}}
+ if(pv===null||nx===null)return[ms-CYC*500,ms+CYC*500];
+ return _fmB=[pv,nx];
+}
+function nextFM(ms){return new Date(fmBracket(ms)[1])}
+function fmName(d){const f=fmList(d.getFullYear()).find(x=>Math.abs(x.t-d)<1000);return f?f.name:(lang==='fi'?'Täysikuu':'Full Moon')}
+const toJ=ms=>ms/864e5+2440587.5-2451545;
+function deltaT(y){if(y>=2005&&y<=2050){const t=y-2000;return 62.92+0.32217*t+0.005589*t*t}const u=(y-1820)/100;return -20+32*u*u}
+const A_ARGS=[[299.77,.107408,.325],[251.88,.016321,.165],[251.83,26.651886,.164],[349.42,36.412478,.126],[84.66,18.206239,.11],[141.74,53.303771,.062],[207.14,2.453732,.06],[154.84,7.30686,.056],[34.52,27.261239,.047],[207.19,.121824,.042],[291.34,1.844379,.04],[161.72,24.198154,.037],[239.56,25.513099,.035],[331.55,3.592518,.023]];
+function meeus(k){
+ const T=k/1236.85,T2=T*T,T3=T2*T,T4=T3*T,r=Math.PI/180,s=Math.sin;
+ let jde=2451550.09766+29.530588861*k+.00015437*T2-.00000015*T3+.00000000073*T4;
+ const E=1-.002516*T-.0000074*T2;
+ const M=(2.5534+29.1053567*k-.0000014*T2-.00000011*T3)*r;
+ const Mp=(201.5643+385.81693528*k+.0107582*T2+.00001238*T3-.000000058*T4)*r;
+ const F=(160.7108+390.67050284*k-.0016118*T2-.00000227*T3+.000000011*T4)*r;
+ const O=(124.7746-1.56375588*k+.0020672*T2+.00000215*T3)*r;
+ let c=-.40614*s(Mp)+.17302*E*s(M)+.01614*s(2*Mp)+.01043*s(2*F)+.00734*E*s(Mp-M)-.00515*E*s(Mp+M)+.00209*E*E*s(2*M)
+  -.00111*s(Mp-2*F)-.00057*s(Mp+2*F)+.00056*E*s(2*Mp+M)-.00042*s(3*Mp)+.00042*E*s(M+2*F)+.00038*E*s(M-2*F)
+  -.00024*E*s(2*Mp-M)-.00017*s(O)-.00007*s(Mp+2*M)+.00004*s(2*Mp-2*F)+.00004*s(3*M)+.00003*s(Mp+M-2*F)
+  +.00003*s(2*Mp+2*F)-.00003*s(Mp+M+2*F)+.00003*s(Mp-M+2*F)-.00002*s(Mp-M-2*F)-.00002*s(3*Mp+M)+.00002*s(4*Mp);
+ let t2=0;
+ A_ARGS.forEach((a,i)=>{const arg=(a[0]+a[1]*k-(i===0?.009173*T2:0))*r;t2+=a[2]*.001*s(arg)});
+ jde+=c+t2;
+ const ms=(jde-2440587.5)*864e5;
+ return ms-deltaT(2000+k/12.3685)*1000;
+}
+const meanFull=k=>(NEW+k*CYC)*1000;
+
+const SEAS=[[2451623.80984,365242.37404,.05169,-.00411,-.00057,'Kevätpäiväntasaus','Ostara'],[2451716.56767,365241.62603,.00325,.00888,-.0003,'Kesäpäivänseisaus','Litha · juhannus'],[2451810.21715,365242.01767,-.11575,.00337,.00078,'Syyspäiväntasaus','Mabon'],[2451900.05952,365242.74049,-.06223,-.00823,.00032,'Talvipäivänseisaus','Yule · valon syntymä']];
+const SB=[[485,324.96,1934.136],[203,337.23,32964.467],[199,342.08,20.186],[182,27.85,445267.112],[156,73.14,45036.886],[136,171.52,22518.443],[77,222.54,65928.934],[74,296.72,3034.906],[70,243.58,9037.513],[58,119.81,33718.147],[52,297.17,150.678],[50,21.02,2281.226],[45,247.54,29929.562],[44,325.15,31555.956],[29,60.93,4443.417],[18,155.12,67555.328],[17,288.79,4562.452],[16,198.04,62894.029],[14,199.76,31436.921],[12,95.39,14577.848],[12,287.11,31931.756],[12,320.81,34777.259],[9,227.73,1222.114],[8,15.45,16859.074]];
+function seasonMs(i,y){const s=SEAS[i],Y=(y-2000)/1000,R=Math.PI/180,j0=s[0]+s[1]*Y+s[2]*Y*Y+s[3]*Y**3+s[4]*Y**4,T=(j0-2451545)/36525,W=(35999.373*T-2.47)*R,dl=1+.0334*Math.cos(W)+.0007*Math.cos(2*W);let S=0;SB.forEach(b=>S+=b[0]*Math.cos((b[1]+b[2]*T)*R));return((j0+.00001*S/dl)-2440587.5)*864e5-deltaT(y+(i+1)*.25)*1000}
+const seasCache={};
+function seasons(y){return seasCache[y]||(seasCache[y]=SEAS.map((s,i)=>({t:new Date(seasonMs(i,y)),name:TRANSLATIONS[lang].seasons[s[5]]||s[5],sub:SEASSUB[lang][i]})))}
+
+function sunLonT(ms){const d=toJ(ms),g=(357.528+0.9856003*d)*Math.PI/180;return mod(280.46+0.9856474*d+1.915*Math.sin(g)+.02*Math.sin(2*g),360)}
+function moonLonT(ms){const d=toJ(ms);return mod(218.316+13.176396*d+6.289*Math.sin((134.963+13.064993*d)*Math.PI/180),360)}
+const zs=l=>ZOD[Math.floor(l/30)]+' '+TRANSLATIONS[lang].zodiac[Math.floor(l/30)]+' '+Math.floor(l%30)+'°';
+const cd=ms=>{const d=Math.floor(ms/864e5),h=Math.floor(ms%864e5/36e5),m=Math.floor(ms%36e5/6e4);return lang==='fi'? (d+' pv '+h+' h '+m+' min') : (d+' d '+h+' h '+m+' min');};
+function prevFM(ms){return new Date(fmBracket(ms)[0])}
+
+const R_=Math.PI/180;
+function eclAt(k,pl=true){
+ const T=k/1236.85,T2=T*T,T3=T2*T,T4=T3*T,r=R_,s=Math.sin,co=Math.cos;
+ const F=(160.7108+390.67050284*k-.0016118*T2-.00000227*T3+.000000011*T4)*r;
+ if(Math.abs(s(F))>.36)return null;
+ const E=1-.002516*T-.0000074*T2,M=(2.5534+29.1053567*k-.0000014*T2-.00000011*T3)*r;
+ const Mp=(201.5643+385.81693528*k+.0107582*T2+.00001238*T3-.000000058*T4)*r,O=(124.7746-1.56375588*k+.0020672*T2+.00000215*T3)*r;
+ const F1=F-.02665*r*s(O),A1=(299.77+.107408*k-.009173*T2)*r,sol=Number.isInteger(k);
+ let jde=2451550.09766+29.530588861*k+.00015437*T2-.00000015*T3+.00000000073*T4;
+ jde+=(sol?-.4075:-.4065)*s(Mp)+(sol?.1721:.1727)*E*s(M)+.0161*s(2*Mp)-.0097*s(2*F1)+.0073*E*s(Mp-M)-.005*E*s(Mp+M)-.0023*s(Mp-2*F1)+.0021*E*s(2*M)+.0012*s(Mp+2*F1)+.0006*E*s(2*Mp+M)-.0004*s(3*Mp)-.0003*E*s(M+2*F1)+.0003*s(A1)-.0002*E*s(M-2*F1)-.0002*E*s(2*Mp-M)-.0002*s(O);
+ if(pl)for(let i=1;i<14;i++){const a=A_ARGS[i];jde+=a[2]*.001*s((a[0]+a[1]*k)*r)}
+ const P=.207*E*s(M)+.0024*E*s(2*M)-.0392*s(Mp)+.0116*s(2*Mp)-.0073*E*s(Mp+M)+.0067*E*s(Mp-M)+.0118*s(2*F1);
+ const Q=5.2207-.0048*E*co(M)+.002*E*co(2*M)-.3299*co(Mp)-.006*E*co(Mp+M)+.0041*E*co(Mp-M);
+ const g=(P*co(F1)+Q*s(F1))*(1-.0048*Math.abs(co(F1))),ag=Math.abs(g);
+ const u=.0059+.0046*E*co(M)-.0182*co(Mp)+.0004*co(2*Mp)-.0005*co(M+Mp);
+ const t=(jde-2440587.5)*864e5-deltaT(2000+k/12.3685)*1000;
+ let kind;
+ if(sol){if(ag>1.5433+u)return null;kind=ag<.9972?(u<0?'total':u>.0047?'annular':(u<.00464*Math.sqrt(1-g*g)?'hybrid':'annular')):'partial'}
+ else{const pen=(1.5573+u-ag)/.545,um=(1.0128-u-ag)/.545;if(pen<=0)return null;kind=um>=1?'total':um>0?'partial':'penumbral'}
+ return{t,type:sol?'S':'L',kind,g};
+}
+const eclCache={};
+function eclList(y){
+ if(eclCache[y])return eclCache[y];
+ const ks=Math.floor((Date.UTC(y,0,1)/1000-NEW)/CYC)-1,ke=Math.ceil((Date.UTC(y+1,0,1)/1000-NEW)/CYC)+1,a=[];
+ for(let n=ks;n<=ke;n++)for(const kk of[n,n+.5]){const e=eclAt(kk);if(e&&new Date(e.t).getFullYear()===y)a.push(e)}
+ return eclCache[y]=a.sort((p,q)=>p.t-q.t);
+}
+function nextEcl(ms){const y=new Date(ms).getFullYear();return[...eclList(y),...eclList(y+1)].find(e=>e.t>ms)}
+
+const PL=[['Merkurius','☿','#b6bfd0',.38709927,.00000037,.20563593,.00001906,7.00497902,-.00594749,252.2503235,149472.67411175,77.45779628,.16047689,48.33076593,-.12534081],
+['Venus','♀','#f0c8dc',.72333566,.0000039,.00677672,-.00004107,3.39467605,-.0007889,181.9790995,58517.81538729,131.60246718,.00268329,76.67984255,-.27769418],
+['Mars','♂','#e48466',1.52371034,.00001847,.0933941,.00007882,1.84969142,-.00813131,-4.55343205,19140.30268499,-23.94362959,.44441088,49.55953891,-.29257343],
+['Jupiter','♃','#e6c77a',5.202887,-.00011607,.04838624,-.00013253,1.30439695,-.00183714,34.39644051,3034.74612775,14.72847983,.21252668,100.47390909,.20469106],
+['Saturnus','♄','#cdb98e',9.53667594,-.0012506,.05386179,-.00050991,2.48599187,.00193609,49.95424423,1222.49362201,92.59887831,-.41897216,113.66242448,-.28867794]];
+const EARTH=[1.00000261,.00000562,.01671123,-.00004392,-.00001531,-.01294668,100.46457166,35999.37244981,102.93768193,.32327364,0,0];
+function helio(el,T){
+ const a=el[0]+el[1]*T,e=el[2]+el[3]*T,I=(el[4]+el[5]*T)*R_,L=el[6]+el[7]*T,wb=el[8]+el[9]*T,O=(el[10]+el[11]*T)*R_;
+ let M=mod(L-wb,360);if(M>180)M-=360;M*=R_;let E=M;for(let i=0;i<10;i++)E=M+e*Math.sin(E);
+ const xp=a*(Math.cos(E)-e),yp=a*Math.sqrt(1-e*e)*Math.sin(E),w=wb*R_-O,cw=Math.cos(w),sw=Math.sin(w),cO=Math.cos(O),sO=Math.sin(O),cI=Math.cos(I);
+ return[(cw*cO-sw*sO*cI)*xp+(-sw*cO-cw*sO*cI)*yp,(cw*sO+sw*cO*cI)*xp+(-sw*sO+cw*cO*cI)*yp];
+}
+function planetLon(i,ms){const T=toJ(ms)/36525,p=helio(PL[i].slice(3),T),e=helio(EARTH,T);return mod(Math.atan2(p[1]-e[1],p[0]-e[0])/R_+1.3969713*T,360)}
+const retro=(i,ms)=>mod(planetLon(i,ms)-planetLon(i,ms-864e5)+180,360)-180<0;
+
+const wCache={};
+function wheel(y){
+ if(wCache[y])return wCache[y];
+ const a=seasons(y-1),b=seasons(y),mid=(p,q,n,sub)=>({t:new Date((+p.t+ +q.t)/2),name:n,sub,x:1});
+ return wCache[y]=[mid(a[3],b[0],'Imbolc',lang==='fi'?'kevään ensimmäinen valo':'first light of spring'),b[0],mid(b[0],b[1],'Beltane',lang==='fi'?'vappu, kesän alku':'summer beginning'),b[1],mid(b[1],b[2],'Lughnasadh',lang==='fi'?'sadonkorjuun alku':'harvest beginning'),b[2],mid(b[2],b[3],'Samhain',lang==='fi'?'pyhäinpäivä, vuoden vaihde':'new year turn'),b[3]];
+}
+
+let LAT=60.17,LON=24.94;
+try{const s=JSON.parse(localStorage.getItem('selene_loc'));if(s&&isFinite(s.lat)&&isFinite(s.lon)){LAT=s.lat;LON=s.lon}}catch(e){}
+
+function useMyLoc(){
+  if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(pos=>{
+      LAT=Number(pos.coords.latitude.toFixed(2));
+      LON=Number(pos.coords.longitude.toFixed(2));
+      $('lat').value=LAT;$('lon').value=LON;
+      try{localStorage.setItem('selene_loc',JSON.stringify({lat:LAT,lon:LON}))}catch(e){}
+      spk=null;
+    },()=>{alert(lang==='fi'?'Sijainnin haku epäonnistui.':'Geolocation failed.');});
+  }else{
+    alert(lang==='fi'?'Selaimesi ei tue geolokaatiota.':'Geolocation not supported.');
+  }
+}
+
+function sunTimes(y,m,d){
+ const doy=Math.round((Date.UTC(y,m,d)-Date.UTC(y,0,1))/864e5)+1,Ly=(y%4===0&&(y%100||y%400===0))?366:365,g=2*Math.PI/Ly*(doy-1);
+ const eq=229.18*(.000075+.001868*Math.cos(g)-.032077*Math.sin(g)-.014615*Math.cos(2*g)-.040849*Math.sin(2*g));
+ const dec=.006918-.399912*Math.cos(g)+.070257*Math.sin(g)-.006758*Math.cos(2*g)+.000907*Math.sin(2*g)-.002697*Math.cos(3*g)+.00148*Math.sin(3*g);
+ const la=LAT*R_,arg=Math.cos(90.833*R_)/(Math.cos(la)*Math.cos(dec))-Math.tan(la)*Math.tan(dec);
+ if(arg>1)return{pol:-1,len:0};if(arg<-1)return{pol:1,len:1440};
+ const ha=Math.acos(arg)/R_,b=Date.UTC(y,m,d);
+ return{rise:b+(720-4*(LON+ha)-eq)*6e4,set:b+(720-4*(LON-ha)-eq)*6e4,len:8*ha};
+}
+
+let st={y:0};
+function build(y){
+ const g=$('stat');g.innerHTML='';
+ const jan1=new Date(y,0,1).getTime(),ylen=(new Date(y+1,0,1)-jan1)/864e5;
+ const ang=d=>d/ylen*360;
+ const doy=(m,d)=>Math.round((new Date(y,m,d)-jan1)/864e5);
+ const ss=seasons(y),zodOff=ang((ss[0].t-jan1)/864e5);
+ st={y,jan1,ylen,zodOff};
+ const defs=el('defs',{},g),fl=fmList(y);
+ [450,405,378,330,285,262].forEach(r=>el('circle',{r,fill:'none',stroke:'#8f7338','stroke-width':r===450||r===285?2.5:1.2},g));
+ for(let m=0;m<12;m++){
+  const a0=ang(doy(m,1)),a1=ang(doy(m+1,1));
+  const s=`M${P(450,a0)}A450 450 0 0 1 ${P(450,a1)}L${P(405,a1)}A405 405 0 0 0 ${P(405,a0)}Z`;
+  el('path',{d:s,fill:m%2?'#140f2c':'#1b1538',stroke:'#8f7338','stroke-width':1},g);
+  el('path',{id:'mp'+m,d:`M${P(417,a0+.6)}A417 417 0 0 1 ${P(417,a1-.6)}`},defs);
+  el('path',{id:'mq'+m,d:`M${P(386,a0+.6)}A386 386 0 0 1 ${P(386,a1-.6)}`},defs);
+  const t=el('text',{class:'mt','font-size':17,'letter-spacing':1.5},g);el('textPath',{href:'#mp'+m,startOffset:'50%','text-anchor':'middle'},t,TRANSLATIONS[lang].months[m]);
+  const names=fl.filter(f=>f.t.getMonth()===m).map(f=>mname(f.name)).join(' / ');
+  const t2=el('text',{class:'mt mn','font-size':11.5},g);el('textPath',{href:'#mq'+m,startOffset:'50%','text-anchor':'middle'},t2,names);
+ }
+ for(let d=0;d<ylen;d++){
+  const a=ang(d),dom=new Date(y,0,1+d).getDate();
+  const L=dom===1?22:dom%5===0?13:7;
+  el('path',{d:`M${P(378,a)}L${P(378-L,a)}`,stroke:dom===1?'#e6c77a':'#a88c55','stroke-width':dom===1?1.6:.8},g);
+  if(dom!==1&&dom%5===0&&dom<=25){const[x,yy]=P(351,a);el('text',{class:'dn',transform:`translate(${x} ${yy}) rotate(${a})`},g,dom)}
+ }
+ for(let i=0;i<12;i++){
+  const a=zodOff+30*i;
+  el('path',{d:`M${P(285,a)}L${P(330,a)}`,stroke:i%3?'#8f7338':'#e6c77a','stroke-width':i%3?1.4:2.6},g);
+  const[x,yy]=P(307,a+15);el('text',{class:'zs',transform:`translate(${x} ${yy}) rotate(${a+15})`},g,ZOD[i]);
+ }
+ for(let a=0;a<360;a+=5)if(a%30)el('path',{d:`M${P(330,zodOff+a)}L${P(324,zodOff+a)}`,stroke:'#6b5730','stroke-width':.7},g);
+ el('path',{id:'gp',d:'M0 -268A268 268 0 1 1 0 268A268 268 0 1 1 0 -268'},defs);
+ const gt=el('text',{class:'gr',textLength:1660,lengthAdjust:'spacing'},g);
+ el('textPath',{href:'#gp'},gt,'ΣΕΛΗΝΗ · ΗΛΙΟΣ · ΚΡΟΝΟΣ · ΖΕΥΣ · ΑΡΗΣ · ΑΦΡΟΔΙΤΗ · ΕΡΜΗΣ · ΚΟΣΜΟΣ · ΧΡΟΝΟΣ · ');
+ const nf=nextFM(Date.now());
+ fl.forEach(f=>{
+  const a=ang((f.t-jan1)/864e5),[x,yy]=P(338,a),isN=Math.abs(f.t-nf)<1000;
+  el('circle',{cx:x,cy:yy,r:isN?8:6,fill:'#e4dbff',stroke:'#7b68ee','stroke-width':1.5,filter:'url(#glow)',class:isN?'next':''},g);
+ });
+ ss.forEach(q=>{const a=ang((q.t-jan1)/864e5),[x,yy]=P(338,a);el('path',{d:'M0 -9L7 0L0 9L-7 0Z',transform:`translate(${x} ${yy}) rotate(${a})`,fill:'#f0cf7a',stroke:'#7a5c1e','stroke-width':1.2,filter:'url(#glow)'},g)});
+ wheel(y).filter(q=>q.x).forEach(q=>{const a=ang((q.t-jan1)/864e5),[x,yy]=P(338,a);el('path',{d:'M0 -9L2.6 -2.6L9 0L2.6 2.6L0 9L-2.6 2.6L-9 0L-2.6 -2.6Z',transform:`translate(${x} ${yy}) rotate(${a})`,fill:'#8fd8f0',stroke:'#5446a8','stroke-width':1,filter:'url(#glow)'},g)});
+ MK=[...fl.map(f=>({a:ang((f.t-jan1)/864e5),r:338,h:`<b>🌕 ${mname(f.name)}</b><br>${lang==='fi'?'Täysikuu':'Full Moon'} ${fmt(f.t,FD)}`})),
+  ...ss.map(q=>({a:ang((q.t-jan1)/864e5),r:338,h:`<b>◆ ${q.name}</b><br>${q.sub}<br>${fmt(q.t,FD)}`})),
+  ...wheel(y).filter(q=>q.x).map(q=>({a:ang((q.t-jan1)/864e5),r:338,h:`<b>✦ ${q.name}</b><br>${q.sub} (${lang==='fi'?'astronominen puoliväli':'astronomical midpoint'})<br>${fmt(q.t,FD)}`})),
+  ...eclList(y).map(e=>({a:ang((e.t-jan1)/864e5),r:380,h:`<b>${e.type==='S'?(lang==='fi'?'☉ Auringonpimennys':'☉ Solar Eclipse'):(lang==='fi'?'☽ Kuunpimennys':'☽ Lunar Eclipse')} (${ek(e.kind)})</b><br>${lang==='fi'?'Suurin pimennys':'Greatest eclipse'} ${fmt(new Date(e.t),FD)}`}))];
+ eclList(y).forEach(e=>{const a=ang((e.t-jan1)/864e5),[x,yy]=P(380,a);el('circle',{cx:x,cy:yy,r:4.6,fill:e.type==='S'?'#f0cf7a':'#dfe6ef',stroke:'#0b0919','stroke-width':1.4},g)});
+}
+
+function gearPath(n,r,h){
+ const p=360/n;let d='';
+ for(let i=0;i<n;i++){const b=i*p;
+  [[b,r-h/2],[b+.15*p,r+h/2],[b+.45*p,r+h/2],[b+.6*p,r-h/2]].forEach(([a,rr],j)=>{d+=(i===0&&j===0?'M':'L')+P(rr,a)});}
+ return d+'Z';
+}
+function mkGear(parent,x,y,n,spokes){
+ const r=n*2.4,g=el('g',{transform:`translate(${x} ${y})`},parent),rot=el('g',{},g);
+ el('path',{d:gearPath(n,r,6.5),fill:'url(#brz)',stroke:'#2e2410','stroke-width':1},rot);
+ el('circle',{r:r*.78,fill:'#0b0919',stroke:'#4d3d1c','stroke-width':1},rot);
+ for(let i=0;i<spokes;i++){const a=i*360/spokes;el('path',{d:`M0 0L${P(r*.8,a)}`,stroke:'url(#brz)','stroke-width':Math.max(3,r*.06)},rot)}
+ el('circle',{r:Math.max(5,r*.13),fill:'url(#brz)',stroke:'#2e2410'},rot);
+ el('circle',{r:Math.max(2,r*.04),fill:'#1a1408'},rot);
+ return{rot,n};
+}
+const G=[];
+const g0=mkGear($('gears'),0,0,62,6);
+[[22,35],[18,150],[20,265]].forEach(([n,a])=>{const[x,y]=P(62*2.4+n*2.4,a);G.push(mkGear($('gears'),x,y,n,4))});
+{const c=el('circle',{r:149,fill:'none',stroke:'#5446a8','stroke-width':1.2,'stroke-dasharray':'3 5'},$('gears'))}
+const ringG=el('g',{},$('ring'));
+el('circle',{r:470,fill:'none',stroke:'#2b2411','stroke-width':1},ringG);
+PLAN.forEach((s,i)=>{const[x,y]=P(473,i*360/7);el('text',{class:'pg',transform:`translate(${x} ${y}) rotate(${i*360/7})`},ringG,s)});
+
+const dial=$('dial');
+el('circle',{r:90,fill:'#0a0716',stroke:'url(#brz)','stroke-width':6},dial);
+el('circle',{r:74,fill:'#131a26'},dial);
+[[-30,-40],[35,-20],[-45,25],[20,48],[-10,10]].forEach(([x,y])=>el('circle',{cx:x,cy:y,r:1.1,fill:'#cfd6e6'},dial));
+const lit=el('path',{fill:'#e9eef6',filter:'url(#glow)'},dial);
+el('circle',{r:70,fill:'none',stroke:'#3d4658','stroke-width':1},dial);
+function phasePath(f,R){const k=Math.cos(2*Math.PI*f),rx=R*Math.abs(k),w=f<.5,s1=w?1:0,s2=w?(k>0?0:1):(k>0?1:0);
+ return `M0 ${-R}A${R} ${R} 0 0 ${s1} 0 ${R}A${rx} ${R} 0 0 ${s2} 0 ${-R}Z`}
+
+const hands=$('hands');
+const sunH=el('g',{},hands),moonH=el('g',{},hands);
+el('path',{d:'M0 -92L0 -352',stroke:'url(#brz)','stroke-width':3.5},sunH);
+el('path',{d:'M0 -92L-5 -120L0 -108L5 -120Z',fill:'#e6c77a'},sunH);
+el('circle',{cy:-362,r:11,fill:'#f0cf7a',stroke:'#7a5c1e','stroke-width':2,filter:'url(#glow)'},sunH);
+el('circle',{cy:-362,r:4,fill:'#7a5c1e'},sunH);
+el('path',{d:'M0 -92L0 -304',stroke:'#aeb8c6','stroke-width':2.5},moonH);
+el('circle',{cy:-307,r:9,fill:'#e9eef6',stroke:'#586070','stroke-width':1.5,filter:'url(#glow)'},moonH);
+el('circle',{cx:3,cy:-307,r:7.5,fill:'#222a38'},moonH);
+
+const subd=$('subd');
+function dialFace(a,name){const[x,y]=P(150,a),g=el('g',{transform:`translate(${x} ${y})`},subd);
+ el('circle',{r:56,fill:'#0b0919',stroke:'url(#brz)','stroke-width':4},g);
+ el('circle',{r:50,fill:'none',stroke:'#4d3d1c','stroke-width':.8},g);
+ g._lbl=el('text',{y:21,'text-anchor':'middle','font-size':8.5,fill:'#a88c55','font-style':'italic'},g,name);
+ return g}
+const metG=dialFace(330,'Meton · 19 y'),sarG=dialFace(210,'Saros · 223 m');
+for(let i=0;i<19;i++){const a=i*360/19,A=P(49,a),B=P(43,a);el('path',{d:`M${A}L${B}`,stroke:'#a88c55','stroke-width':1},metG);const[tx,ty]=P(35,a+9.47);el('text',{x:tx,y:ty,'text-anchor':'middle','dominant-baseline':'central','font-size':6.5,fill:'#8f8668'},metG,i+1)}
+const metH=el('path',{d:'M0 6L0 -44',stroke:'#e6c77a','stroke-width':1.6},metG);el('circle',{r:2.5,fill:'#e6c77a'},metG);
+const sarT=el('g',{},sarG),sarH=el('path',{d:'M0 6L0 -45',stroke:'#e6c77a','stroke-width':1.6},sarG);el('circle',{r:2.5,fill:'#e6c77a'},sarG);
+let sarN0=null;
+function buildSaros(n0){
+ sarT.innerHTML='';let d='';
+ for(let j=0;j<223;j++){const a=j*360/223;d+=`M${P(49,a)}L${P(46,a)}`}
+ el('path',{d,stroke:'#6b5730','stroke-width':.6},sarT);
+ for(let j=0;j<223;j++){const a=j*360/223,s=eclAt(n0+j),l=eclAt(n0+j+.5);
+  if(s){const[x,y]=P(39,a);el('circle',{cx:x,cy:y,r:3,fill:'#f0cf7a'},sarT)}
+  if(l){const[x,y]=P(30,a);el('circle',{cx:x,cy:y,r:3,fill:'#dfe6ef'},sarT)}}
+ sarN0=n0;
+}
+const PH=PL.map((p,i)=>{const g=el('g',{},hands),r=212+i*12;
+ el('path',{d:`M0 -92L0 ${-r}`,stroke:p[2],'stroke-width':1,opacity:.55},g);
+ const dd=el('g',{transform:`translate(0 ${-r})`},g);
+ el('circle',{r:9.5,fill:'#0d0a1c',stroke:p[2],'stroke-width':1.5},dd);
+ const t=el('text',{'text-anchor':'middle','dominant-baseline':'central','font-size':13,fill:p[2],'font-family':'"Segoe UI Symbol","Noto Sans Symbols","DejaVu Sans",serif'},dd,p[1]+'\uFE0E');
+ return{g,t}});
+function updateExtra(ms){
+ const d=new Date(ms);
+ PH.forEach((h,i)=>{const a=st.zodOff+planetLon(i,ms);h.g.setAttribute('transform',`rotate(${a})`);h.t.setAttribute('transform',`rotate(${-a})`)});
+ metH.setAttribute('transform',`rotate(${((d.getFullYear()%19)+(ms-st.jan1)/864e5/st.ylen)/19*360})`);
+ const x=(ms/1000-NEW)/CYC,ln=Math.floor(x),pos=mod(ln,223);
+ if(sarN0!==ln-pos)buildSaros(ln-pos);
+ sarH.setAttribute('transform',`rotate(${(pos+x-ln)/223*360})`);
+}
+let spk=null;
+function drawSpark(Y,d){
+ const key=Y+'|'+LAT,idx=Math.round((Date.UTC(Y,d.getMonth(),d.getDate())-Date.UTC(Y,0,1))/864e5);
+ if(!spk||spk.key!==key){const a=[],n=(Date.UTC(Y+1,0,1)-Date.UTC(Y,0,1))/864e5;for(let i=0;i<n;i++)a.push(sunTimes(Y,0,1+i).len);spk={key,a,mn:Math.min(...a),mx:Math.max(...a),idx:-1}}
+ if(spk.idx===idx)return;spk.idx=idx;
+ const{a,mn,mx}=spk,n=a.length,yy=v=>(54-(v-mn)/((mx-mn)||1)*48).toFixed(1),xx=i=>(i*365/(n-1)).toFixed(1);
+ $('spark').innerHTML=`<polyline fill="none" stroke="#b8944f" stroke-width="1.5" points="${a.map((v,i)=>xx(i)+','+yy(v)).join(' ')}"/><line x1="${xx(idx)}" x2="${xx(idx)}" y1="2" y2="58" stroke="#b79cff" stroke-width=".8" stroke-dasharray="2 2"/><circle cx="${xx(idx)}" cy="${yy(a[idx])}" r="3.5" fill="#e4dbff"/>`;
+}
+
+$('lat').value=LAT;$('lon').value=LON;
+['lat','lon'].forEach(id=>$(id).onchange=()=>{const a=parseFloat($('lat').value),b=parseFloat($('lon').value);
+ if(isFinite(a)&&isFinite(b)&&Math.abs(a)<=90&&Math.abs(b)<=180){LAT=a;LON=b;try{localStorage.setItem('selene_loc',JSON.stringify({lat:a,lon:b}))}catch(e){}spk=null}});
+
+// Teemaan sopivat spinner-napit (▲ / ▼)
+document.querySelectorAll('.spin').forEach(w=>{
+  const inp=w.querySelector('input');
+  w.querySelectorAll('.sb button').forEach(b=>b.onclick=()=>{
+    (+b.dataset.d>0)?inp.stepUp():inp.stepDown();
+    inp.dispatchEvent(new Event('change'));
+  });
+});
+
+let MK=[];
+const FD={weekday:'short',day:'numeric',month:'numeric',year:'numeric',hour:'2-digit',minute:'2-digit'};
+const tip=document.createElement('div');tip.id='tip';document.body.appendChild(tip);
+const GC=[[22,35],[18,150],[20,265]];
+function describe(x,y){
+ const r=Math.hypot(x,y),a=mod(Math.atan2(x,-y)/R_,360),ms=simMs,D=t=>fmt(new Date(t),FD);
+ const near=(rr,aa,l)=>{const[px,py]=P(rr,aa);return Math.hypot(x-px,y-py)<l};
+ const sa=(ms-st.jan1)/864e5/st.ylen*360;
+ if(near(362,sa,16))return lang==='fi'?`<b>☉ Auringon käsi</b><br>Osoittaa kuluvan päivän.<br>${D(ms)}`:`<b>☉ Sun Hand</b><br>Points to the current day.<br>${D(ms)}`;
+ const ml=moonLonT(ms);
+ if(near(307,st.zodOff+ml,14))return lang==='fi'?`<b>☽ Kuun käsi</b><br>Kuun paikka eläinradalla: ${zs(ml)}.`:`<b>☽ Moon Hand</b><br>Moon's position in zodiac: ${zs(ml)}.`;
+ for(let i=0;i<5;i++){const l=planetLon(i,ms);if(near(212+i*12,st.zodOff+l,12))return `<b>${PL[i][1]}\uFE0E ${TRANSLATIONS[lang].planets[i]}</b><br>${zs(l)}${retro(i,ms)?(lang==='fi'?'<br>℞ retrogradi':'<br>℞ retrograde'):''}`}
+ for(const m of MK)if(near(m.r,m.a,13))return m.h;
+ if(r>496)return null;
+ if(r>450)return lang==='fi'?`<b>Planeettarengas</b><br>☉ ☽ ☿ ♀ ♂ ♃ ♄ – antiikin kiertotähdet.`:`<b>Planet Ring</b><br>☉ ☽ ☿ ♀ ♂ ♃ ♄ – ancient planets.`;
+ if(r>405){const d=new Date(st.y,0,1+Math.floor(a/360*st.ylen));return `<b>${TRANSLATIONS[lang].months[d.getMonth()]} ${st.y}</b>`}
+ if(r>378){const m=new Date(st.y,0,1+Math.floor(a/360*st.ylen)).getMonth(),n=fmList(st.y).filter(f=>f.t.getMonth()===m).map(f=>mname(f.name));return lang==='fi'?`<b>Täysikuun nimi</b><br>${n.join(' / ')}`:`<b>Full Moon Name</b><br>${n.join(' / ')}`}
+ if(r>340){const d=new Date(st.y,0,1+Math.floor(a/360*st.ylen),12),q=moonData(d);return `${d.toLocaleDateString(lang==='fi'?'fi-FI':'en-US',{weekday:'long',day:'numeric',month:'long'})}<br>${q.phase.i} ${q.phase.n}, ${lang==='fi'?'valaistus':'illumination'} ${Math.round(q.ill*100)}%`}
+ if(r>330)return lang==='fi'?`<b>Merkkirata</b><br>● täysikuu · ◆ seisaus/tasaus · ✦ vuoden pyörä`:`<b>Markers</b><br>● full moon · ◆ solstice/equinox · ✦ wheel of year`;
+ if(r>285){const i=Math.floor(mod(a-st.zodOff,360)/30);return `<b>${ZOD[i]} ${TRANSLATIONS[lang].zodiac[i]}</b>`}
+ if(r>262)return lang==='fi'?`<b>Kreikkalainen kirjoituskehä</b>`:`<b>Greek Inscription Ring</b>`;
+ const mc=P(150,330),sc=P(150,210);
+ if(Math.hypot(x-mc[0],y-mc[1])<58)return lang==='fi'?`<b>Metonin kehä (19 v)</b>`:`<b>Metonic Cycle (19 yrs)</b>`;
+ if(Math.hypot(x-sc[0],y-sc[1])<58)return lang==='fi'?`<b>Saros-kehä (223 kk)</b>`:`<b>Saros Cycle (223 mo)</b>`;
+ if(r<92){const q=moonData(new Date(ms));return `<b>${q.phase.i} ${q.phase.n}</b>`}
+ return lang==='fi'?`<b>Koneiston pronssilevy</b>`:`<b>Clock Bronze Plate</b>`;
+}
+
+const svgEl=$('svg'),baseEl=$('svgBase');
+let isZoomed = false;
+svgEl.addEventListener('click', (e)=>{
+ const pt=svgEl.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;
+ const p=pt.matrixTransform(svgEl.getScreenCTM().inverse());
+ if(!isZoomed){
+  const w=350,h=350,x=p.x-w/2,y=p.y-h/2;
+  const vb=`${x} ${y} ${w} ${h}`;svgEl.setAttribute('viewBox',vb);baseEl.setAttribute('viewBox',vb);
+  svgEl.classList.add('zoomed');
+  isZoomed=true;
+ }else{
+  svgEl.setAttribute('viewBox','-500 -500 1000 1000');baseEl.setAttribute('viewBox','-500 -500 1000 1000');
+  svgEl.classList.remove('zoomed');
+  isZoomed=false;
+ }
+});
+
+function showTip(e){
+ const pt=svgEl.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;
+ const p=pt.matrixTransform(svgEl.getScreenCTM().inverse()),h=describe(p.x,p.y);
+ if(!h){tip.style.display='none';return}
+ tip.innerHTML=h;tip.style.display='block';
+ const w=tip.offsetWidth,hh=tip.offsetHeight;let l=e.clientX+16,t=e.clientY+16;
+ if(l+w>innerWidth-8)l=e.clientX-w-16;if(t+hh>innerHeight-8)t=e.clientY-hh-16;
+ tip.style.left=Math.max(4,l)+'px';tip.style.top=Math.max(4,t)+'px';
+}
+let tipRaf=0,tipE=null;
+const showTipThrottled=e=>{tipE=e;if(!tipRaf)tipRaf=requestAnimationFrame(()=>{tipRaf=0;if(tipE)showTip(tipE)})};
+svgEl.addEventListener('pointermove',showTipThrottled);svgEl.addEventListener('pointerdown',showTipThrottled);
+svgEl.addEventListener('pointerleave',()=>{tipE=null;tip.style.display='none'});
+
+let simMs=Date.now(),speed=1,gA=0,last=performance.now(),lastPanel=0;
+document.querySelectorAll('button[data-s]').forEach(b=>b.onclick=()=>{
+ speed=+b.dataset.s;if(speed===1)simMs=Date.now();
+ document.querySelectorAll('button[data-s]').forEach(x=>x.classList.toggle('on',x===b));
+});
+const fmt=(d,o)=>d.toLocaleString(lang==='fi'?'fi-FI':'en-US',o);
+
+function updateDayNight(d){
+ const tInfo=sunTimes(d.getFullYear(),d.getMonth(),d.getDate());
+ const ms=d.getTime();
+ let isDay=false;
+ if(tInfo.pol>0){isDay=true;}
+ else if(tInfo.pol<0){isDay=false;}
+ else{isDay=(ms>=tInfo.rise&&ms<=tInfo.set);}
+ document.body.classList.toggle('day-mode',isDay);
+}
+
+function panel(d){
+ const m=moonData(d),ill=Math.round(m.ill*100);
+ $('now').textContent=fmt(d,{weekday:'long',day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit'});
+ $('ph').textContent=m.phase.i+' '+m.phase.n;
+ $('ph2').textContent=(lang==='fi'?'Ikä ':'Age ') + m.age.toFixed(1) + (lang==='fi'?' vrk · valaistus ':' d · illumination ') + ill + '%';
+ $('bar').style.width=ill+'%';
+ const nf=nextFM(d.getTime()),diff=nf-d,dd=Math.floor(diff/864e5),hh=Math.floor(diff%864e5/36e5),mm=Math.floor(diff%36e5/6e4);
+ $('nf').textContent=mname(fmName(nf));
+ $('nf2').textContent=fmt(nf,{weekday:'short',day:'numeric',month:'numeric',hour:'2-digit',minute:'2-digit'})+' · '+dd+'d '+hh+'h '+mm+'m';
+ document.body.classList.toggle('fm',m.toFull<=.5);
+ const ms=d.getTime();
+ $('sz').textContent='☉\uFE0E '+zs(sunLonT(ms));$('sz2').textContent='☽\uFE0E '+zs(moonLonT(ms));
+ const ev=[...wheel(d.getFullYear()),...wheel(d.getFullYear()+1)].find(q=>q.t>d);
+ $('se').textContent=ev.name;$('se2').textContent=ev.sub+' · '+fmt(ev.t,{weekday:'short',day:'numeric',month:'numeric',hour:'2-digit',minute:'2-digit'})+' · '+cd(ev.t-d);
+ const ne=nextEcl(ms);
+ $('ec').textContent=(ne.type==='S'?'☉\uFE0E '+(lang==='fi'?'Auringonpimennys':'Solar Eclipse'):'☽\uFE0E '+(lang==='fi'?'Kuunpimennys':'Lunar Eclipse'))+' · '+ek(ne.kind);
+ $('ec2').textContent=fmt(new Date(ne.t),{weekday:'short',day:'numeric',month:'numeric',year:'numeric',hour:'2-digit',minute:'2-digit'})+' · '+cd(ne.t-ms);
+ const gn=(d.getFullYear()%19)+1,sp=mod(Math.floor((ms/1000-NEW)/CYC),223);
+ $('mt').textContent=(lang==='fi'?'Meton: vuosi ':'Meton: year ') + gn + ' / 19';$('mt2').textContent=(lang==='fi'?'Saros: kuukausi ':'Saros: month ') + (sp+1) + ' / 223';
+ const plh=PL.map((p,i)=>{const l=planetLon(i,ms);return `<span style="color:${p[2]};margin-right:14px;white-space:nowrap">${p[1]}\uFE0E ${TRANSLATIONS[lang].zodiac[Math.floor(l/30)]} ${Math.floor(l%30)}°${retro(i,ms)?' ℞':''}</span>`}).join('');
+ if($('pl').dataset.h!==plh){$('pl').innerHTML=plh;$('pl').dataset.h=plh}
+ lit.setAttribute('d',phasePath(m.f,70));
+ const Y=d.getFullYear(),Mo=d.getMonth(),D=d.getDate(),t0=sunTimes(Y,Mo,D),t1=sunTimes(Y,Mo,D-1),hm=v=>new Date(v).toLocaleTimeString(lang==='fi'?'fi-FI':'en-US',{hour:'2-digit',minute:'2-digit'});
+ if(t0.pol){$('sun1').textContent=t0.pol>0?(lang==='fi'?'Yötön yö':'Midnight Sun'):(lang==='fi'?'Kaamos':'Polar Night');$('sun2').textContent=''}
+ else{const L=t0.len,dl=(t0.len-t1.len)*60,a=Math.abs(dl);
+  $('sun1').textContent=(lang==='fi'?'Nousu ':'Rise ')+hm(t0.rise)+' · '+(lang==='fi'?'Laskeminen ':'Set ')+hm(t0.set);
+  $('sun2').textContent=(lang==='fi'?'Päivän pituus ':'Day length ')+Math.floor(L/60)+' h '+Math.floor(L%60)+' min'}
+ drawSpark(Y,d);
+ updateDayNight(d);
+ const eh=eclList(Y).map(e=>`<span class="chip${e.t<ms?' p':''}">${e.type==='S'?'☉':'☽'}\uFE0E ${ek(e.kind)} ${fmt(new Date(e.t),{day:'numeric',month:'numeric'})}</span>`).join('');
+ if($('eclc').dataset.h!==eh){$('eclc').innerHTML=eh;$('eclc').dataset.h=eh}
+ const html=fmList(d.getFullYear()).map(f=>{
+  const c=f.t<d&&Math.abs(f.t-d)>432e5?'p':'';const n=Math.abs(f.t-nf)<1000?' n':'';
+  return `<span class="chip ${c}${n}">${fmt(f.t,{day:'numeric',month:'numeric'})} ${mname(f.name)}</span>`}).join('');
+ if($('chips').dataset.h!==html){$('chips').innerHTML=html;$('chips').dataset.h=html}
+}
+function frame(now){
+ requestAnimationFrame(frame);
+ if(now-last<(speed===1?28:12))return;
+ const dt=Math.min(now-last,250);last=now;
+ try{
+  if(speed===1)simMs=Date.now();else simMs+=dt*speed;
+  if(!isFinite(simMs)||simMs>Date.UTC(2200,0,1)||simMs<Date.UTC(1900,0,1)){
+   simMs=Date.now();speed=1;
+   document.querySelectorAll('button[data-s]').forEach(x=>x.classList.toggle('on',+x.dataset.s===1));
+  }
+  const d=new Date(simMs);
+  if(d.getFullYear()!==st.y)build(d.getFullYear());
+  gA=(gA+dt/1000*(speed===1?3:speed<1e6?40:90))%36000;
+  g0.rot.setAttribute('transform',`rotate(${gA})`);
+  G.forEach(s=>s.rot.setAttribute('transform',`rotate(${-gA*62/s.n})`));
+  ringG.setAttribute('transform',`rotate(${gA*.15})`);
+  sunH.setAttribute('transform',`rotate(${(simMs-st.jan1)/864e5/st.ylen*360})`);
+  moonH.setAttribute('transform',`rotate(${st.zodOff+moonLonT(simMs)})`);
+  updateExtra(simMs);
+  if(now-lastPanel>250){lastPanel=now;panel(d)}
+ }catch(err){console.error(err)}
+}
+build(new Date().getFullYear());
+if(lang!=='en')applyLang();
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>
