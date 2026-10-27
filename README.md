@@ -32,8 +32,6 @@ The project takes inspiration from the Antikythera mechanism, an ancient device 
 
 You can use the clock directly in your browser without installing anything.
 
-**[Launch the interactive clock](https://millaceedee.github.io/Modernkythera/)**
-
 ## Source code
 
 The source code is available in this repository. You are welcome to explore it, learn from it and build upon it under the terms of the MIT License.
