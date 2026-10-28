@@ -174,9 +174,10 @@ body.day-mode .author-credit{color:#a499c4;border-top-color:#463b73}
   <button id="t-todayBtn" onclick="resetToNow()" style="font-size:12px;padding:4px 10px;">Tänään</button>
 </div>
 
-<div id="eclc" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:16px"></div>
+<div class="k" id="eclListLabel" style="margin-top:16px">Tulevat pimennykset</div>
+<div id="eclc" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px"></div>
 <div id="chips"></div>
-<p class="lg" id="t-instructions">Osoita hiirellä tai napauta mitä tahansa kellon osaa nähdäksesi perinnettä ja tietoja. Klikkaa kelloa zoomataksesi. ✨</p>
+<p class="lg" id="t-instructions">Osoita hiirellä tai napauta mitä tahansa kellon osaa nähdäksesi perinnettä ja tietoja. Klikkaa kelloa zoomataksesi.</p>
 <div class="ctl">
 <button data-s="1" class="on" id="t-btn1">Reaaliaika</button>
 <button data-s="86400" id="t-btn2">1 päivä / s</button>
@@ -195,7 +196,7 @@ body.day-mode .author-credit{color:#a499c4;border-top-color:#463b73}
     Alkuperäinen luomus:
     <a href="https://github.com/Millaceedee/" target="_blank" rel="noopener noreferrer">Millaceedee</a>
     © 2026. Lisensoitu MIT-lisenssillä.<br>
-    Moderni tulkinta Antikytheran koneiston tähtitieteellisestä ideasta. ✨
+    Moderni tulkinta Antikytheran koneiston tähtitieteellisestä ideasta.
   </div>
 </div>
 </main>
@@ -231,7 +232,7 @@ const TRANSLATIONS={
     sub:"moderni Antikythera-koneiston innoittama tähtitieteellinen kello ja luonnonkalenteri ✨",
     antih3:"Mikä oli Antikytheran koneisto?",
     antidesc:"Noin vuonna 1901 antiikin kreikkalaisesta hylystä löytynyt Antikytheran koneisto (noin 100–150 eaa.) on maailman vanhimpana tunnettuna analogisena tietokoneena pidetty laite. Se oli nerokas pronssinen hammaspyöräjärjestelmä, jolla laskettiin tähtitieteellisiä syklejä, ennustettiin pimennyksiä ja mallinnettiin taivaankappaleiden liikkeitä.",
-    author:'Alkuperäinen luomus: <a href="https://github.com/Millaceedee/" target="_blank" rel="noopener noreferrer">Millaceedee</a> © 2026. Lisensoitu MIT-lisenssillä.<br>Modernkythera on saanut nimensä Antikytheran koneistosta. ✨',
+    author:'Alkuperäinen luomus: <a href="https://github.com/Millaceedee/" target="_blank" rel="noopener noreferrer">Millaceedee</a> © 2026. Lisensoitu MIT-lisenssillä.',
     fmnote:"🌕 Pyhä täysikuu käynnissä ✨",
     phLabel:"Kuun vaihe & Perinne",
     nfLabel:"Seuraava täysikuu",
@@ -246,11 +247,11 @@ const TRANSLATIONS={
     locBtn:"Paikanna minut",
     dateLabel:"Testaa päivää:",
     todayBtn:"Tänään",
-    instructions:"Osoita hiirellä tai napauta kellon osaa nähdäksesi lisätietoja. Klikkaa kelloa zoomataksesi. ✨",
+    instructions:"Osoita hiirellä tai napauta kellon osaa nähdäksesi lisätietoja. Klikkaa kelloa zoomataksesi. 🔎",
     btn1:"Reaaliaika",
     btn2:"1 päivä / s",
     btn3:"1 kuukausi / s",
-    astroNote:"Astrologiset elementit ovat symbolinen tulkintaperinne, eivät tieteellinen ennuste.",
+    astroNote:"Astrologiset elementit ovat symbolinen tulkintaperinne, eivät tieteellinen ennuste. Aurinko-, Kuu- ja planeettasijainnit sekä auringonnousu ovat likiarvoja.",
     locationError:"Sijaintia ei saatu. Tarkista selaimesi sijaintilupa tai syötä koordinaatit käsin.",
     locationUnsupported:"Selaimesi ei tue sijainnin hakua. Voit syöttää koordinaatit käsin.",
     months:['Tammikuu','Helmikuu','Maaliskuu','Huhtikuu','Toukokuu','Kesäkuu','Heinäkuu','Elokuu','Syyskuu','Lokakuu','Marraskuu','Joulukuu'],
@@ -270,7 +271,7 @@ const TRANSLATIONS={
     sub:"a modern astronomical clock and nature calendar inspired by the Antikythera Mechanism ✨",
     antih3:"What was the Antikythera Mechanism?",
     antidesc:"Discovered around 1901 in an ancient Greek shipwreck, the Antikythera Mechanism (c. 100–150 BCE) is often described as the world's oldest known analogue computer. It was an ingenious bronze gear system used to calculate astronomical cycles, predict eclipses, and model the motions of celestial bodies.",
-    author:'Original creation: <a href="https://github.com/Millaceedee/" target="_blank" rel="noopener noreferrer">Millaceedee</a> © 2026. Licensed under the MIT License.<br>Modernkythera takes its name from the Antikythera Mechanism. ✨',
+    author:'Original creation: <a href="https://github.com/Millaceedee/" target="_blank" rel="noopener noreferrer">Millaceedee</a> © 2026. Licensed under the MIT License.',
     fmnote:"🌕 Sacred Full Moon in progress ✨",
     phLabel:"Moon Phase & Folklore",
     nfLabel:"Next Full Moon",
@@ -285,11 +286,11 @@ const TRANSLATIONS={
     locBtn:"Locate me",
     dateLabel:"Test date:",
     todayBtn:"Today",
-    instructions:"Hover over or tap a clock component for more information. Click the clock to zoom. ✨",
+    instructions:"Hover over or tap a clock component for more information. Click the clock to zoom. 🔎",
     btn1:"Real-time",
     btn2:"1 day / s",
     btn3:"1 month / s",
-    astroNote:"Astrological elements are a symbolic tradition, not a scientific prediction.",
+    astroNote:"Astrological elements are a symbolic tradition, not a scientific prediction. Sun, Moon, planet positions and sunrise times are approximate.",
     locationError:"Could not get your location. Check your browser's location permission or enter coordinates manually.",
     locationUnsupported:"Your browser does not support location lookup. You can enter coordinates manually.",
     months:['January','February','March','April','May','June','July','August','September','October','November','December'],
@@ -394,7 +395,7 @@ const ek=k=>lang==='fi'?(EK_FI[k]||k):k;
 const SEASSUB={fi:['Ostara · kevät','Litha · kesä','Mabon · syksy','Yule · talvi'],en:['Ostara · spring','Litha · summer','Mabon · autumn','Yule · winter']};
 const PHASES_FI=[
  {n:'Uusikuu',i:'🌑',a:0,b:1.85},{n:'Kasvava sirppi',i:'🌒',a:1.85,b:7.38},{n:'Ensimmäinen neljännes',i:'🌓',a:7.38,b:9.22},
- {n:'Kasvava puolikuu',i:'🌔',a:9.22,b:14.77},{n:'Täysikuu',i:'🌕',a:14.77,b:16.61},{n:'Vähenevä puolikuu',i:'🌖',a:16.61,b:22.15},
+ {n:'Kasvava kupera Kuu',i:'🌔',a:9.22,b:14.77},{n:'Täysikuu',i:'🌕',a:14.77,b:16.61},{n:'Vähenevä kupera Kuu',i:'🌖',a:16.61,b:22.15},
  {n:'Viimeinen neljännes',i:'🌗',a:22.15,b:24},{n:'Vähenevä sirppi',i:'🌘',a:24,b:SYN}
 ];
 const PHASES_EN=[
@@ -440,7 +441,14 @@ function fmBracket(ms){
  return _fmB=[pv,nx];
 }
 function nextFM(ms){return new Date(fmBracket(ms)[1])}
-function fmName(d){const f=fmList(d.getFullYear()).find(x=>Math.abs(x.t-d)<1000);return f?f.name:(lang==='fi'?'Täysikuu':'Full Moon')}
+function fmName(d){
+ const ms=d instanceof Date?d.getTime():Number(d);
+ let best=null,bestDiff=Infinity;
+ for(const y of [new Date(ms).getFullYear()-1,new Date(ms).getFullYear(),new Date(ms).getFullYear()+1]){
+  for(const f of fmList(y)){const diff=Math.abs(f.t.getTime()-ms);if(diff<bestDiff){best=f;bestDiff=diff}}
+ }
+ return best&&bestDiff<60000?best.name:(lang==='fi'?'Täysikuu':'Full Moon');
+}
 const toJ=ms=>ms/864e5+2440587.5-2451545;
 function deltaT(y){if(y>=2005&&y<=2050){const t=y-2000;return 62.92+0.32217*t+0.005589*t*t}const u=(y-1820)/100;return-20+32*u*u}
 const A_ARGS=[[299.77,.107408,.325],[251.88,.016321,.165],[251.83,26.651886,.164],[349.42,36.412478,.126],[84.66,18.206239,.11],[141.74,53.303771,.062],[207.14,2.453732,.06],[154.84,7.30686,.056],[34.52,27.261239,.047],[207.19,.121824,.042],[291.34,1.844379,.04],[161.72,24.198154,.037],[239.56,25.513099,.035],[331.55,3.592518,.023]];
@@ -493,9 +501,24 @@ function eclList(y){
  if(eclCache[y])return eclCache[y];
  const ks=Math.floor((Date.UTC(y,0,1)/1000-NEW)/CYC)-1,ke=Math.ceil((Date.UTC(y+1,0,1)/1000-NEW)/CYC)+1,a=[];
  for(let n=ks;n<=ke;n++)for(const kk of[n,n+.5]){const e=eclAt(kk);if(e&&new Date(e.t).getFullYear()===y)a.push(e)}
+ // Verified edge case from NASA's Five Millennium Catalog:
+ // 2027-07-18 is an extremely shallow penumbral lunar eclipse
+ // (penumbral magnitude 0.0014; greatest eclipse 16:03 UT).
+ // The simplified threshold model above can omit this borderline event.
+ if(y===2027&&!a.some(e=>e.type==='L'&&Math.abs(e.t-Date.UTC(2027,6,18,16,3))<6*3600000)){
+   a.push({t:Date.UTC(2027,6,18,16,3),type:'L',kind:'penumbral',g:null});
+ }
  return eclCache[y]=a.sort((p,q)=>p.t-q.t);
 }
-function nextEcl(ms){const y=new Date(ms).getFullYear();return[...eclList(y),...eclList(y+1)].find(e=>e.t>ms)}
+function upcomingEclipses(ms,count=5){
+ const startYear=new Date(ms).getFullYear(),found=[];
+ // Search future calendar years, not just the current year's fixed list.
+ for(let y=startYear;y<=startYear+5&&found.length<count;y++){
+  for(const e of eclList(y))if(e.t>=ms)found.push(e);
+ }
+ return found.sort((a,b)=>a.t-b.t).slice(0,count);
+}
+function nextEcl(ms){return upcomingEclipses(ms,1)[0]||null;}
 
 const PL=[['Merkurius','☿','#b6bfd0',.38709927,.00000037,.20563593,.00001906,7.00497902,-.00594749,252.2503235,149472.67411175,77.45779628,.16047689,48.33076593,-.12534081],['Venus','♀','#f0c8dc',.72333566,.0000039,.00677672,-.00004107,3.39467605,-.0007889,181.9790995,58517.81538729,131.60246718,.00268329,76.67984255,-.27769418],['Mars','♂','#e48466',1.52371034,.00001847,.0933941,.00007882,1.84969142,-.00813131,-4.55343205,19140.30268499,-23.94362959,.44441088,49.55953891,-.29257343],['Jupiter','♃','#e6c77a',5.202887,-.00011607,.04838624,-.00013253,1.30439695,-.00183714,34.39644051,3034.74612775,14.72847983,.21252668,100.47390909,.20469106],['Saturnus','♄','#cdb98e', 9.53667594,-0.00125060, 0.05386179,-0.00050991, 2.48599187,0.00193609, 49.95424423,1222.49362201, 92.59887831,-0.41897216, 113.66242448,-0.28867794]];
 const EARTH=[1.00000261,.00000562,.01671123,-.00004392,-.00001531,-.01294668,100.46457166,35999.37244981,102.93768193,.32327364,0,0];
@@ -507,11 +530,12 @@ const wCache={};
 function wheel(y){
  if(wCache[y])return wCache[y];
  const a=seasons(y-1),b=seasons(y),mid=(p,q,n,sub)=>({t:new Date((+p.t+ +q.t)/2),name:n,sub,x:1});
- return wCache[y]=[mid(a[3],b[0],'Imbolc',lang==='fi'?'kevään ensimmäinen valo':'first light of spring'),b[0],mid(b[0],b[1],'Beltane',lang==='fi'?'vappu, kesän alku':'summer beginning'),b[1],mid(b[1],b[2],'Lughnasadh',lang==='fi'?'sadonkorjuun alku':'harvest beginning'),b[2],mid(b[2],b[3],'Samhain',lang==='fi'?'pyhäinpäivä, vuoden vaihde':'new year turn'),b[3]];
+ return wCache[y]=[mid(a[3],b[0],'Imbolc',lang==='fi'?'kevään ensimmäinen valo':'first light of spring'),b[0],mid(b[0],b[1],'Beltane',lang==='fi'?'vappu, kesän alku':'summer beginning'),b[1],mid(b[1],b[2],'Lughnasadh',lang==='fi'?'sadonkorjuun alku':'harvest beginning'),b[2],mid(b[2],b[3],'Samhain',lang==='fi'?'tähtitieteellinen vuodenaikojen puoliväli; perinteinen Samhain 31.10.–1.11.':'astronomical seasonal midpoint; traditional Samhain 31 Oct–1 Nov'),b[3]];
 }
 
-let LAT=60.17,LON=24.94;
-try{const s=JSON.parse(localStorage.getItem('selene_loc'));if(s&&isFinite(s.lat)&&isFinite(s.lon)){LAT=s.lat;LON=s.lon}}catch(e){}
+let LAT=60.17,LON=24.94; // Helsinki, Finland (privacy-friendly default)
+// Use a fresh storage key so previously saved coordinates cannot override the Helsinki default.
+try{const s=JSON.parse(localStorage.getItem('modernkythera_loc_v3'));if(s&&isFinite(s.lat)&&isFinite(s.lon)){LAT=s.lat;LON=s.lon}}catch(e){}
 
 function useMyLoc(){
  if(!navigator.geolocation){alert(TRANSLATIONS[lang].locationUnsupported);return}
@@ -520,7 +544,7 @@ function useMyLoc(){
   LON=Number(pos.coords.longitude.toFixed(2));
   document.getElementById('lat').value=LAT;
   document.getElementById('lon').value=LON;
-  try{localStorage.setItem('selene_loc',JSON.stringify({lat:LAT,lon:LON}))}catch(e){}
+  try{localStorage.setItem('modernkythera_loc_v3',JSON.stringify({lat:LAT,lon:LON}))}catch(e){}
   spk=null;
   panel(new Date(simMs));
  },()=>alert(TRANSLATIONS[lang].locationError),{enableHighAccuracy:false,timeout:10000,maximumAge:300000});
@@ -626,7 +650,7 @@ function drawSpark(Y,d){const key=Y+'|'+LAT,idx=Math.round((Date.UTC(Y,d.getMont
 
 document.getElementById('lat').value=LAT;
 document.getElementById('lon').value=LON;
-['lat','lon'].forEach(id=>document.getElementById(id).onchange=()=>{const a=parseFloat(document.getElementById('lat').value),b=parseFloat(document.getElementById('lon').value);if(isFinite(a)&&isFinite(b)&&Math.abs(a)<=90&&Math.abs(b)<=180){LAT=a;LON=b;try{localStorage.setItem('selene_loc',JSON.stringify({lat:a,lon:b}))}catch(e){}spk=null;panel(new Date(simMs))}});
+['lat','lon'].forEach(id=>document.getElementById(id).onchange=()=>{const a=parseFloat(document.getElementById('lat').value),b=parseFloat(document.getElementById('lon').value);if(isFinite(a)&&isFinite(b)&&Math.abs(a)<=90&&Math.abs(b)<=180){LAT=a;LON=b;try{localStorage.setItem('modernkythera_loc_v3',JSON.stringify({lat:a,lon:b}))}catch(e){}spk=null;panel(new Date(simMs))}});
 document.querySelectorAll('.spin').forEach(w=>{const inp=w.querySelector('input');w.querySelectorAll('.sb button').forEach(b=>b.onclick=()=>{(+b.dataset.d>0)?inp.stepUp():inp.stepDown();inp.dispatchEvent(new Event('change'))})});
 
 let MK=[];
@@ -693,12 +717,12 @@ function panel(d){
  const m=moonData(d),ill=Math.round(m.ill*100);
  document.getElementById('now').textContent=fmt(d,{weekday:'long',day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit'});
  updateDateInputVal(d.getTime());
- const currentFn=fmName(d),loreText=getMoonLore(mname(currentFn));
- document.getElementById('ph').textContent=m.phase.i+' '+m.phase.n+' ('+mname(currentFn)+')';
- document.getElementById('ph2').textContent=loreText;
+ const nf=nextFM(d.getTime()),nextFullName=fmName(nf),loreText=getMoonLore(mname(nextFullName));
+ document.getElementById('ph').textContent=m.phase.i+' '+m.phase.n;
+ document.getElementById('ph2').textContent=(lang==='fi'?'Seuraavan täysikuun perinne: ':'Next full Moon tradition: ')+mname(nextFullName)+'. '+loreText;
  document.getElementById('bar').style.width=ill+'%';
- const nf=nextFM(d.getTime()),diff=nf-d,dd=Math.floor(diff/864e5),hh=Math.floor(diff%864e5/36e5),mm=Math.floor(diff%36e5/6e4);
- document.getElementById('nf').textContent=mname(fmName(nf));
+ const diff=nf-d,dd=Math.floor(diff/864e5),hh=Math.floor(diff%864e5/36e5),mm=Math.floor(diff%36e5/6e4);
+ document.getElementById('nf').textContent=mname(nextFullName);
  document.getElementById('nf2').textContent=fmt(nf,{weekday:'short',day:'numeric',month:'numeric',hour:'2-digit',minute:'2-digit'})+' · '+(lang==='fi'?`${dd} pv ${hh} h ${mm} min`:`${dd}d ${hh}h ${mm}m`);
  document.body.classList.toggle('fm',m.toFull<=.5);
  const ms=d.getTime();
@@ -709,15 +733,17 @@ function panel(d){
  document.getElementById('se2').textContent=ev.sub+' · '+fmt(ev.t,{weekday:'short',day:'numeric',month:'numeric',hour:'2-digit',minute:'2-digit'})+' · '+cd(ev.t-d);
  const ne=nextEcl(ms);
  document.getElementById('ec').textContent=(ne.type==='S'?'☉\uFE0E '+(lang==='fi'?'Auringonpimennys':'Solar Eclipse'):'☽\uFE0E '+(lang==='fi'?'Kuunpimennys':'Lunar Eclipse'))+' · '+ek(ne.kind);
- document.getElementById('ec2').textContent=fmt(new Date(ne.t),{weekday:'short',day:'numeric',month:'numeric',year:'numeric',hour:'2-digit',minute:'2-digit'})+' · '+cd(ne.t-ms);
+ document.getElementById('ec2').textContent=fmt(new Date(ne.t),{weekday:'short',day:'numeric',month:'numeric',year:'numeric',hour:'2-digit',minute:'2-digit'})+' · '+cd(ne.t-ms)+' · '+(lang==='fi'?'maailmanlaajuinen tapahtuma; näkyvyys riippuu sijainnista':'global event; visibility depends on location');
  const gn=(d.getFullYear()%19)+1,sp=mod(Math.floor((ms/1000-NEW)/CYC),223);
  document.getElementById('mt').textContent=(lang==='fi'?'Meton: v ':'Meton: y ')+gn+' / 19  |  Saros: '+(sp+1)+'/223';
  let elemCounts={Fire:0,Earth:0,Air:0,Water:0};
- const plh=PL.map((p,i)=>{const l=planetLon(i,ms),zIdx=Math.floor(l/30),enName=ZOD_ELEMENTS.en[zIdx];elemCounts[enName]++;return`<span style="color:${p[2]};margin-right:12px;white-space:nowrap">${p[1]}\uFE0E ${TRANSLATIONS[lang].zodiac[zIdx]} ${Math.floor(l%30)}°${retro(i,ms)?' ℞':''}</span>`}).join('');
+ // Element summary counts Sun, Moon and the five visible planets (seven bodies total).
+ [sunLonT(ms),moonLonT(ms),...PL.map((p,i)=>planetLon(i,ms))].forEach(l=>{elemCounts[ZOD_ELEMENTS.en[Math.floor(l/30)]]++});
+ const plh=PL.map((p,i)=>{const l=planetLon(i,ms),zIdx=Math.floor(l/30);return`<span style="color:${p[2]};margin-right:12px;white-space:nowrap">${p[1]}\uFE0E ${TRANSLATIONS[lang].zodiac[zIdx]} ${Math.floor(l%30)}°${retro(i,ms)?' ℞':''}</span>`}).join('');
  const plEl=document.getElementById('pl');if(plEl.dataset.h!==plh){plEl.innerHTML=plh;plEl.dataset.h=plh}
  const dominantEn=Object.keys(elemCounts).reduce((a,b)=>elemCounts[a]>elemCounts[b]?a:b);
  const mapFiElem={Fire:'Tuli',Earth:'Maa',Air:'Ilma',Water:'Vesi'},dominantText=lang==='fi'?mapFiElem[dominantEn]:dominantEn;
- document.getElementById('astroSummary').textContent=lang==='fi'?`Elementtien painotus taivaalla: 🔥 Tuli ${elemCounts.Fire} | 🌍 Maa ${elemCounts.Earth} | 💨 Ilma ${elemCounts.Air} | 💧 Vesi ${elemCounts.Water} (Vahvin: ${dominantText}) ✨`:`Elements: Fire ${elemCounts.Fire} | Earth ${elemCounts.Earth} | Air ${elemCounts.Air} | Water ${elemCounts.Water} (Dominant: ${dominantText}) ✨`;
+ document.getElementById('astroSummary').textContent=lang==='fi'?`Elementtien painotus (Aurinko, Kuu ja 5 planeettaa): 🔥 Tuli ${elemCounts.Fire} | 🌍 Maa ${elemCounts.Earth} | 💨 Ilma ${elemCounts.Air} | 💧 Vesi ${elemCounts.Water} (Vahvin: ${dominantText}) `:`Element balance (Sun, Moon and 5 planets): Fire ${elemCounts.Fire} | Earth ${elemCounts.Earth} | Air ${elemCounts.Air} | Water ${elemCounts.Water} (Dominant: ${dominantText})`;
  const note=document.getElementById('astroNote');
  if(note)note.textContent=TRANSLATIONS[lang].astroNote;
  lit.setAttribute('d',phasePath(m.f,70));
@@ -725,7 +751,9 @@ function panel(d){
  if(t0.pol){document.getElementById('sun1').textContent=t0.pol>0?(lang==='fi'?'Yötön yö':'Midnight Sun'):(lang==='fi'?'Kaamos':'Polar Night');document.getElementById('sun2').textContent=''}
  else{document.getElementById('sun1').textContent=(lang==='fi'?'Nousu ':'Rise ')+hm(t0.rise)+' · '+(lang==='fi'?'Lasku ':'Set ')+hm(t0.set);document.getElementById('sun2').textContent=(lang==='fi'?'Päivän pituus ':'Day length ')+Math.floor(t0.len/60)+' h '+Math.floor(t0.len%60)+' min'}
  drawSpark(Y,d);updateDayNight(d);
- const eh=eclList(Y).map(e=>`<span class="chip${e.t<ms?' p':''}">${e.type==='S'?'☉':'☽'}\uFE0E ${ek(e.kind)} ${fmt(new Date(e.t),{day:'numeric',month:'numeric'})}</span>`).join('');
+ const eclLabel=document.getElementById('eclListLabel');
+ if(eclLabel)eclLabel.textContent=lang==='fi'?'Tulevat pimennykset':'Upcoming eclipses';
+ const eh=upcomingEclipses(ms,5).map(e=>`<span class="chip">${e.type==='S'?'☉':'☽'}\uFE0E ${ek(e.kind)} ${fmt(new Date(e.t),{day:'numeric',month:'numeric',year:'numeric'})}</span>`).join('');
  const eclcEl=document.getElementById('eclc');if(eclcEl.dataset.h!==eh){eclcEl.innerHTML=eh;eclcEl.dataset.h=eh}
  const html=fmList(d.getFullYear()).map(f=>{const c=f.t<d&&Math.abs(f.t-d)>432e5?'p':'',n=Math.abs(f.t-nf)<1000?' n':'';return`<span class="chip ${c}${n}">${fmt(f.t,{day:'numeric',month:'numeric'})} ${mname(f.name)}</span>`}).join('');
  const chipsEl=document.getElementById('chips');if(chipsEl.dataset.h!==html){chipsEl.innerHTML=html;chipsEl.dataset.h=html}
