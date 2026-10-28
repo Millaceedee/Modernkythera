@@ -114,10 +114,10 @@ body.day-mode .author-credit{color:#a499c4;border-top-color:#463b73}
 </head>
 <body>
 <main>
-<noscript><p style="text-align:center;padding:20px">Modernkythera on interaktiivinen pakanallinen ja astronominen kello. ✨</p></noscript>
+<noscript><p style="text-align:center;padding:20px">Modernkythera on interaktiivinen pakanallinen ja astronominen kello. </p></noscript>
 <header>
   <h1 id="t-title">Modernkythera</h1>
-  <p class="sub" id="t-sub">moderni antikythera-tyylinen luonnonkalenteri ja mystinen kello ✨</p>
+  <p class="sub" id="t-sub">moderni antikythera-tyylinen luonnonkalenteri ja mystinen kello </p>
 </header>
 
 <div id="wrap">
@@ -141,7 +141,7 @@ body.day-mode .author-credit{color:#a499c4;border-top-color:#463b73}
 
 <section id="panel">
 <div id="now"></div>
-<div class="fmnote" id="t-fmnote">🌕 Pyhä täysikuu käynnissä ✨</div>
+<div class="fmnote" id="t-fmnote">🌕 Pyhä täysikuu käynnissä </div>
 <div class="cols">
 <div><div class="k" id="t-phLabel">Kuun vaihe & Perinne</div><div class="v" id="ph"></div><div class="s" id="ph2"></div><div class="bar"><i id="bar"></i></div></div>
 <div><div class="k" id="t-nfLabel">Seuraava Täysikuu</div><div class="v" id="nf"></div><div class="s" id="nf2"></div></div>
@@ -233,7 +233,7 @@ const TRANSLATIONS={
     antih3:"Mikä oli Antikytheran koneisto?",
     antidesc:"Noin vuonna 1901 antiikin kreikkalaisesta hylystä löytynyt Antikytheran koneisto (noin 100–150 eaa.) on maailman vanhimpana tunnettuna analogisena tietokoneena pidetty laite. Se oli nerokas pronssinen hammaspyöräjärjestelmä, jolla laskettiin tähtitieteellisiä syklejä, ennustettiin pimennyksiä ja mallinnettiin taivaankappaleiden liikkeitä.",
     author:'Alkuperäinen luomus: <a href="https://github.com/Millaceedee/" target="_blank" rel="noopener noreferrer">Millaceedee</a> © 2026. Lisensoitu MIT-lisenssillä.',
-    fmnote:"🌕 Pyhä täysikuu käynnissä ✨",
+    fmnote:"🌕 Pyhä täysikuu käynnissä ",
     phLabel:"Kuun vaihe & Perinne",
     nfLabel:"Seuraava täysikuu",
     szLabel:"Aurinko ja Kuu eläinradalla",
@@ -268,11 +268,11 @@ const TRANSLATIONS={
     title:"Modernkythera – Mystical Astronomical Clock & Nature Calendar",
     metaDesc:"An astronomical clock inspired by the Antikythera Mechanism, showing lunar phases, eclipses, planets, astronomical cycles and the nature calendar.",
     featdesc:"Modernkythera shows the Moon phase and traditional full Moon name, eclipses, the zodiac positions of the Sun and Moon, planetary positions, and the Metonic and Saros cycles. It also includes Wheel of the Year festivals and daylight length for your location.",
-    sub:"a modern astronomical clock and nature calendar inspired by the Antikythera Mechanism ✨",
+    sub:"a modern astronomical clock and nature calendar inspired by the Antikythera Mechanism ",
     antih3:"What was the Antikythera Mechanism?",
     antidesc:"Discovered around 1901 in an ancient Greek shipwreck, the Antikythera Mechanism (c. 100–150 BCE) is often described as the world's oldest known analogue computer. It was an ingenious bronze gear system used to calculate astronomical cycles, predict eclipses, and model the motions of celestial bodies.",
     author:'Original creation: <a href="https://github.com/Millaceedee/" target="_blank" rel="noopener noreferrer">Millaceedee</a> © 2026. Licensed under the MIT License.',
-    fmnote:"🌕 Sacred Full Moon in progress ✨",
+    fmnote:"🌕 Sacred Full Moon in progress ",
     phLabel:"Moon Phase & Folklore",
     nfLabel:"Next Full Moon",
     szLabel:"Sun & Moon in Zodiac",
@@ -698,7 +698,7 @@ customDateInput.onchange=()=>{
  const val=customDateInput.value;
  if(!val)return;
  const [y,m,d]=val.split('-').map(Number);
- // Keskipäivä selaimen paikallisessa aikavyöhykkeessä estää UTC-päivän vaihtumisen.
+// Noon in the browser's local time zone prevents the UTC date from changing.
  simMs=new Date(y,m-1,d,12,0,0).getTime();
  speed=0;
  document.querySelectorAll('button[data-s]').forEach(x=>x.classList.remove('on'));
@@ -743,7 +743,7 @@ function panel(d){
  const plEl=document.getElementById('pl');if(plEl.dataset.h!==plh){plEl.innerHTML=plh;plEl.dataset.h=plh}
  const dominantEn=Object.keys(elemCounts).reduce((a,b)=>elemCounts[a]>elemCounts[b]?a:b);
  const mapFiElem={Fire:'Tuli',Earth:'Maa',Air:'Ilma',Water:'Vesi'},dominantText=lang==='fi'?mapFiElem[dominantEn]:dominantEn;
- document.getElementById('astroSummary').textContent=lang==='fi'?`Elementtien painotus (Aurinko, Kuu ja 5 planeettaa): 🔥 Tuli ${elemCounts.Fire} | 🌍 Maa ${elemCounts.Earth} | 💨 Ilma ${elemCounts.Air} | 💧 Vesi ${elemCounts.Water} (Vahvin: ${dominantText}) `:`Element balance (Sun, Moon and 5 planets): Fire ${elemCounts.Fire} | Earth ${elemCounts.Earth} | Air ${elemCounts.Air} | Water ${elemCounts.Water} (Dominant: ${dominantText})`;
+ document.getElementById('astroSummary').textContent=lang==='fi'?`Elementtien painotus (Aurinko, Kuu ja 5 planeettaa): 🔥 Tuli ${elemCounts.Fire} | 🌍 Maa ${elemCounts.Earth} | 💨 Ilma ${elemCounts.Air} | 💧 Vesi ${elemCounts.Water} (Vahvin: ${dominantText}) `:`Element balance (Sun, Moon and 5 planets): 🔥 Fire ${elemCounts.Fire} | 🌍 Earth ${elemCounts.Earth} | 💨 Air ${elemCounts.Air} | 💧 Water ${elemCounts.Water} (Dominant: ${dominantText})`;
  const note=document.getElementById('astroNote');
  if(note)note.textContent=TRANSLATIONS[lang].astroNote;
  lit.setAttribute('d',phasePath(m.f,70));
