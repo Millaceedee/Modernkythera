@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="fi">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Modernkythera – Mystinen tähtitieteellinen kello & Luonnonkalenteri</title>
-<meta name="description" content="Antikythera-tyylinen tähtikello: kuun vaihe, täysikuun pakanalliset nimet, vuoden pyörä, kansanperinne ja astrologinen analyysi.">
+<title>Modernkythera – Mystical Astronomical Clock & Nature Calendar</title>
+<meta name="description" content="Antikythera-style astronomical clock: moon phase, full moon folklore names, Wheel of the Year, ancient traditions and astrological analysis.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#08060f">
 
@@ -114,10 +114,10 @@ body.day-mode .author-credit{color:#a499c4;border-top-color:#463b73}
 </head>
 <body>
 <main>
-<noscript><p style="text-align:center;padding:20px">Modernkythera on interaktiivinen pakanallinen ja astronominen kello. </p></noscript>
+<noscript><p style="text-align:center;padding:20px">Modernkythera is an interactive pagan and astronomical clock. ✨</p></noscript>
 <header>
   <h1 id="t-title">Modernkythera</h1>
-  <p class="sub" id="t-sub">moderni antikythera-tyylinen luonnonkalenteri ja mystinen kello </p>
+  <p class="sub" id="t-sub">a modern astronomical clock and nature calendar inspired by the Antikythera Mechanism </p>
 </header>
 
 <div id="wrap">
@@ -141,62 +141,62 @@ body.day-mode .author-credit{color:#a499c4;border-top-color:#463b73}
 
 <section id="panel">
 <div id="now"></div>
-<div class="fmnote" id="t-fmnote">🌕 Pyhä täysikuu käynnissä </div>
+<div class="fmnote" id="t-fmnote">🌕 Sacred Full Moon in progress </div>
 <div class="cols">
-<div><div class="k" id="t-phLabel">Kuun vaihe & Perinne</div><div class="v" id="ph"></div><div class="s" id="ph2"></div><div class="bar"><i id="bar"></i></div></div>
-<div><div class="k" id="t-nfLabel">Seuraava Täysikuu</div><div class="v" id="nf"></div><div class="s" id="nf2"></div></div>
+<div><div class="k" id="t-phLabel">Moon Phase & Folklore</div><div class="v" id="ph"></div><div class="s" id="ph2"></div><div class="bar"><i id="bar"></i></div></div>
+<div><div class="k" id="t-nfLabel">Next Full Moon</div><div class="v" id="nf"></div><div class="s" id="nf2"></div></div>
 </div>
 <div class="cols" style="margin-top:16px">
-<div><div class="k" id="t-szLabel">Aurinko ja Kuu eläinradalla</div><div class="v" id="sz"></div><div class="s" id="sz2"></div></div>
-<div><div class="k" id="t-seLabel">Vuoden pyörän juhla</div><div class="v" id="se"></div><div class="s" id="se2"></div></div>
+<div><div class="k" id="t-szLabel">Sun & Moon in Zodiac</div><div class="v" id="sz"></div><div class="s" id="sz2"></div></div>
+<div><div class="k" id="t-seLabel">Wheel of the Year Festival</div><div class="v" id="se"></div><div class="s" id="se2"></div></div>
 </div>
 <div class="cols" style="margin-top:16px">
-<div><div class="k" id="t-ecLabel">Seuraava pimennys</div><div class="v" id="ec"></div><div class="s" id="ec2"></div></div>
-<div><div class="k" id="t-mtLabel">Syklit & Astrologinen katsaus</div><div class="v" id="mt"></div><div class="s" id="mt2"></div></div>
+<div><div class="k" id="t-ecLabel">Next Eclipse</div><div class="v" id="ec"></div><div class="s" id="ec2"></div></div>
+<div><div class="k" id="t-mtLabel">Cycles & Astrological Insight</div><div class="v" id="mt"></div><div class="s" id="mt2"></div></div>
 </div>
-<div style="margin-top:16px"><div class="k" id="t-plLabel">Planeetat eläinradalla & Elementit</div><div class="v" id="pl" style="font-size:17px"></div><div class="s" id="astroSummary" style="margin-top:4px;color:#d9ccff"></div></div>
+<div style="margin-top:16px"><div class="k" id="t-plLabel">Planets in Zodiac & Elements</div><div class="v" id="pl" style="font-size:17px"></div><div class="s" id="astroSummary" style="margin-top:4px;color:#d9ccff"></div></div>
 <div id="astroNote" class="s" style="margin-top:4px"></div>
 <div style="margin-top:16px">
   <div class="k" style="display:flex;align-items:center;flex-wrap:wrap;gap:6px">
-    <span id="t-sunLabel">Päivän valo</span> · <span id="t-latLabel">lat</span>
+    <span id="t-sunLabel">Daylight</span> · <span id="t-latLabel">lat</span>
     <span class="spin"><input id="lat" type="number" step="0.01" class="ll"><span class="sb"><button type="button" data-d="1" aria-label="+">▲</button><button type="button" data-d="-1" aria-label="−">▼</button></span></span>
     <span id="t-lonLabel">lon</span>
     <span class="spin"><input id="lon" type="number" step="0.01" class="ll"><span class="sb"><button type="button" data-d="1" aria-label="+">▲</button><button type="button" data-d="-1" aria-label="−">▼</button></span></span>
-    <button id="locBtn" onclick="useMyLoc()" style="font-size:12px;padding:2px 8px;margin-left:4px">📍 <span id="t-locBtn">Paikanna minut</span></button>
+    <button id="locBtn" onclick="useMyLoc()" style="font-size:12px;padding:2px 8px;margin-left:4px">📍 <span id="t-locBtn">Locate me</span></button>
   </div>
   <div class="v" id="sun1"></div><div class="s" id="sun2"></div>
   <svg id="spark" viewBox="0 0 365 60" style="width:100%;height:auto;margin-top:8px"></svg>
 </div>
 
 <div class="date-input-wrap">
-  <label for="customDate" id="t-dateLabel" style="font-size:13px;color:#8a8266;">Testaa päivää:</label>
+  <label for="customDate" id="t-dateLabel" style="font-size:13px;color:#8a8266;">Test date:</label>
   <input type="date" id="customDate" class="date-input">
-  <button id="t-todayBtn" onclick="resetToNow()" style="font-size:12px;padding:4px 10px;">Tänään</button>
+  <button id="t-todayBtn" onclick="resetToNow()" style="font-size:12px;padding:4px 10px;">Today</button>
 </div>
 
-<div class="k" id="eclListLabel" style="margin-top:16px">Tulevat pimennykset</div>
+<div class="k" id="eclListLabel" style="margin-top:16px">Upcoming eclipses</div>
 <div id="eclc" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px"></div>
 <div id="chips"></div>
-<p class="lg" id="t-instructions">Osoita hiirellä tai napauta mitä tahansa kellon osaa nähdäksesi perinnettä ja tietoja. Klikkaa kelloa zoomataksesi.</p>
+<p class="lg" id="t-instructions">Hover over or tap a clock component for more information. Click the clock to zoom. 🔎</p>
 <div class="ctl">
-<button data-s="1" class="on" id="t-btn1">Reaaliaika</button>
-<button data-s="86400" id="t-btn2">1 päivä / s</button>
-<button data-s="2592000" id="t-btn3">1 kuukausi / s</button>
+<button data-s="1" class="on" id="t-btn1">Real-time</button>
+<button data-s="86400" id="t-btn2">1 day / s</button>
+<button data-s="2592000" id="t-btn3">1 month / s</button>
 <button id="langBtn" onclick="toggleLang()">FI / EN</button>
 </div>
 </section>
 
 <div class="footer-info-box">
-  <h3 id="t-antih3">Mikä oli Antikytheran koneisto?</h3>
-  <p id="t-antidesc">Noin vuonna 1901 antiikin kreikkalaisesta hylystä löytynyt Antikytheran koneisto (noin 100–150 eaa.) on maailman vanhimpana tunnettuna analogisena tietokoneena pidetty laite. Se oli nerokas pronssinen hammaspyöräjärjestelmä, jolla laskettiin tähtitieteellisiä syklejä, ennustettiin pimennyksiä ja mallinnettiin taivaankappaleiden liikkeitä.</p>
+  <h3 id="t-antih3">What was the Antikythera Mechanism?</h3>
+  <p id="t-antidesc">Discovered around 1901 in an ancient Greek shipwreck, the Antikythera Mechanism (c. 100–150 BCE) is often described as the world's oldest known analogue computer. It was an ingenious bronze gear system used to calculate astronomical cycles, predict eclipses, and model the motions of celestial bodies.</p>
 
-  <p id="t-featdesc" style="margin-top:8px">Modernkythera on saanut nimensä tästä muinaisesta laitteesta. Se näyttää kuun vaiheen ja seuraavan täysikuun perinteisen nimen, pimennykset, auringon ja kuun sijainnin eläinradalla, planeettojen sijainnit sekä Metonin ja Saroksen syklit. Lisäksi se sisältää vuoden pyörän juhlat ja sijainnin mukaan lasketun päivän pituuden.</p>
+  <p id="t-featdesc" style="margin-top:8px">Modernkythera shows the Moon phase and traditional full Moon name, eclipses, the zodiac positions of the Sun and Moon, planetary positions, and the Metonic and Saros cycles. It also includes Wheel of the Year festivals and daylight length for your location.</p>
 
   <div class="author-credit" id="t-author">
-    Alkuperäinen luomus:
+    Original creation:
     <a href="https://github.com/Millaceedee/" target="_blank" rel="noopener noreferrer">Millaceedee</a>
-    © 2026. Lisensoitu MIT-lisenssillä.<br>
-    Moderni tulkinta Antikytheran koneiston tähtitieteellisestä ideasta.
+    © 2026. Licensed under the MIT License.<br>
+    A modern interpretation of the Antikythera astronomical concept.
   </div>
 </div>
 </main>
@@ -219,7 +219,7 @@ body.day-mode .author-credit{color:#a499c4;border-top-color:#463b73}
   document.body.appendChild(s);
 })();
 
-let lang='fi';
+let lang='en';
 try{
   const sl=localStorage.getItem('modernkythera_lang');
   if(sl==='fi'||sl==='en')lang=sl;
@@ -501,10 +501,6 @@ function eclList(y){
  if(eclCache[y])return eclCache[y];
  const ks=Math.floor((Date.UTC(y,0,1)/1000-NEW)/CYC)-1,ke=Math.ceil((Date.UTC(y+1,0,1)/1000-NEW)/CYC)+1,a=[];
  for(let n=ks;n<=ke;n++)for(const kk of[n,n+.5]){const e=eclAt(kk);if(e&&new Date(e.t).getFullYear()===y)a.push(e)}
- // Verified edge case from NASA's Five Millennium Catalog:
- // 2027-07-18 is an extremely shallow penumbral lunar eclipse
- // (penumbral magnitude 0.0014; greatest eclipse 16:03 UT).
- // The simplified threshold model above can omit this borderline event.
  if(y===2027&&!a.some(e=>e.type==='L'&&Math.abs(e.t-Date.UTC(2027,6,18,16,3))<6*3600000)){
    a.push({t:Date.UTC(2027,6,18,16,3),type:'L',kind:'penumbral',g:null});
  }
@@ -512,7 +508,6 @@ function eclList(y){
 }
 function upcomingEclipses(ms,count=5){
  const startYear=new Date(ms).getFullYear(),found=[];
- // Search future calendar years, not just the current year's fixed list.
  for(let y=startYear;y<=startYear+5&&found.length<count;y++){
   for(const e of eclList(y))if(e.t>=ms)found.push(e);
  }
@@ -533,9 +528,8 @@ function wheel(y){
  return wCache[y]=[mid(a[3],b[0],'Imbolc',lang==='fi'?'kevään ensimmäinen valo':'first light of spring'),b[0],mid(b[0],b[1],'Beltane',lang==='fi'?'vappu, kesän alku':'summer beginning'),b[1],mid(b[1],b[2],'Lughnasadh',lang==='fi'?'sadonkorjuun alku':'harvest beginning'),b[2],mid(b[2],b[3],'Samhain',lang==='fi'?'tähtitieteellinen vuodenaikojen puoliväli; perinteinen Samhain 31.10.–1.11.':'astronomical seasonal midpoint; traditional Samhain 31 Oct–1 Nov'),b[3]];
 }
 
-let LAT=60.17,LON=24.94; // Helsinki, Finland (privacy-friendly default)
-// Use a fresh storage key so previously saved coordinates cannot override the Helsinki default.
-try{const s=JSON.parse(localStorage.getItem('modernkythera_loc_v3'));if(s&&isFinite(s.lat)&&isFinite(s.lon)){LAT=s.lat;LON=s.lon}}catch(e){}
+let LAT=60.17,LON=24.94;
+try{const s=JSON.parse(localStorage.getItem('modernkythera_store'));if(s&&isFinite(s.lat)&&isFinite(s.lon)){LAT=s.lat;LON=s.lon}}catch(e){}
 
 function useMyLoc(){
  if(!navigator.geolocation){alert(TRANSLATIONS[lang].locationUnsupported);return}
@@ -544,7 +538,7 @@ function useMyLoc(){
   LON=Number(pos.coords.longitude.toFixed(2));
   document.getElementById('lat').value=LAT;
   document.getElementById('lon').value=LON;
-  try{localStorage.setItem('modernkythera_loc_v3',JSON.stringify({lat:LAT,lon:LON}))}catch(e){}
+  try{localStorage.setItem('modernkythera_store',JSON.stringify({lat:LAT,lon:LON}))}catch(e){}
   spk=null;
   panel(new Date(simMs));
  },()=>alert(TRANSLATIONS[lang].locationError),{enableHighAccuracy:false,timeout:10000,maximumAge:300000});
@@ -650,7 +644,7 @@ function drawSpark(Y,d){const key=Y+'|'+LAT,idx=Math.round((Date.UTC(Y,d.getMont
 
 document.getElementById('lat').value=LAT;
 document.getElementById('lon').value=LON;
-['lat','lon'].forEach(id=>document.getElementById(id).onchange=()=>{const a=parseFloat(document.getElementById('lat').value),b=parseFloat(document.getElementById('lon').value);if(isFinite(a)&&isFinite(b)&&Math.abs(a)<=90&&Math.abs(b)<=180){LAT=a;LON=b;try{localStorage.setItem('modernkythera_loc_v3',JSON.stringify({lat:a,lon:b}))}catch(e){}spk=null;panel(new Date(simMs))}});
+['lat','lon'].forEach(id=>document.getElementById(id).onchange=()=>{const a=parseFloat(document.getElementById('lat').value),b=parseFloat(document.getElementById('lon').value);if(isFinite(a)&&isFinite(b)&&Math.abs(a)<=90&&Math.abs(b)<=180){LAT=a;LON=b;try{localStorage.setItem('modernkythera_store',JSON.stringify({lat:a,lon:b}))}catch(e){}spk=null;panel(new Date(simMs))}});
 document.querySelectorAll('.spin').forEach(w=>{const inp=w.querySelector('input');w.querySelectorAll('.sb button').forEach(b=>b.onclick=()=>{(+b.dataset.d>0)?inp.stepUp():inp.stepDown();inp.dispatchEvent(new Event('change'))})});
 
 let MK=[];
@@ -667,7 +661,7 @@ function describe(x,y){
  for(const m of MK)if(near(m.r,m.a,13))return m.h;
  if(r>496)return null;
  if(r>450)return lang==='fi'?'<b>Planeettakehä</b><br>Aurinko, Kuu ja planeetat muinaisessa kiertokulussa.':'<b>Planet ring</b><br>Symbols mark the Sun, Moon and planets.';
- if(r>405){const d=new Date(st.y,0,1+Math.floor(a/360*st.ylen));return`<b>${TRANSLATIONS[lang].months[d.getMonth()]} ${st.y}</b>`}
+ if(r>405){const d=new Date(st.y,0,1+Math.floor(a/360*st.ylen));return `<b>${TRANSLATIONS[lang].months[d.getMonth()]} ${st.y}</b>`}
  if(r>378){const m=new Date(st.y,0,1+Math.floor(a/360*st.ylen)).getMonth(),n=fmList(st.y).filter(f=>f.t.getMonth()===m).map(f=>mname(f.name));return lang==='fi'?`<b>Kansanperinne / Täysikuu</b><br>${n.join(' / ')}<br>${getMoonLore(n[0])||''}`:`<b>Full Moon Name</b><br>${n.join(' / ')}`}
  if(r>340){const d=new Date(st.y,0,1+Math.floor(a/360*st.ylen),12),q=moonData(d);return`${d.toLocaleDateString(lang==='fi'?'fi-FI':'en-US',{weekday:'long',day:'numeric',month:'long'})}<br>${q.phase.i} ${q.phase.n}, ${lang==='fi'?'valaistus':'illumination'} ${Math.round(q.ill*100)}%`}
  if(r>330)return lang==='fi'?'<b>Merkit</b><br>● täysikuu · ◆ seisaus/tasaus · ✦ vuoden pyörä':'<b>Markers</b><br>● full moon · ◆ solstice/equinox · ✦ Wheel of the Year';
@@ -698,7 +692,6 @@ customDateInput.onchange=()=>{
  const val=customDateInput.value;
  if(!val)return;
  const [y,m,d]=val.split('-').map(Number);
-// Noon in the browser's local time zone prevents the UTC date from changing.
  simMs=new Date(y,m-1,d,12,0,0).getTime();
  speed=0;
  document.querySelectorAll('button[data-s]').forEach(x=>x.classList.remove('on'));
@@ -737,9 +730,8 @@ function panel(d){
  const gn=(d.getFullYear()%19)+1,sp=mod(Math.floor((ms/1000-NEW)/CYC),223);
  document.getElementById('mt').textContent=(lang==='fi'?'Meton: v ':'Meton: y ')+gn+' / 19  |  Saros: '+(sp+1)+'/223';
  let elemCounts={Fire:0,Earth:0,Air:0,Water:0};
- // Element summary counts Sun, Moon and the five visible planets (seven bodies total).
  [sunLonT(ms),moonLonT(ms),...PL.map((p,i)=>planetLon(i,ms))].forEach(l=>{elemCounts[ZOD_ELEMENTS.en[Math.floor(l/30)]]++});
- const plh=PL.map((p,i)=>{const l=planetLon(i,ms),zIdx=Math.floor(l/30);return`<span style="color:${p[2]};margin-right:12px;white-space:nowrap">${p[1]}\uFE0E ${TRANSLATIONS[lang].zodiac[zIdx]} ${Math.floor(l%30)}°${retro(i,ms)?' ℞':''}</span>`}).join('');
+ const plh=PL.map((p,i)=>{const l=planetLon(i,ms),zIdx=Math.floor(l/30);return`<span style="color:${p[2]};margin-right:12px;white-space:nowrap">${p[1]}\uFE0E ${TRANSLATIONS[lang].planets[i]} ${Math.floor(l%30)}°${retro(i,ms)?' ℞':''}</span>`}).join('');
  const plEl=document.getElementById('pl');if(plEl.dataset.h!==plh){plEl.innerHTML=plh;plEl.dataset.h=plh}
  const dominantEn=Object.keys(elemCounts).reduce((a,b)=>elemCounts[a]>elemCounts[b]?a:b);
  const mapFiElem={Fire:'Tuli',Earth:'Maa',Air:'Ilma',Water:'Vesi'},dominantText=lang==='fi'?mapFiElem[dominantEn]:dominantEn;
@@ -780,7 +772,7 @@ function frame(now){
 }
 
 build(new Date().getFullYear());
-if(lang!=='en')applyLang();
+applyLang();
 requestAnimationFrame(frame);
 </script>
 </body>
