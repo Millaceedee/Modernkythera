@@ -44,6 +44,14 @@ You can use the clock directly in your browser without installing anything.
 
 The source code is available in this repository. You are welcome to explore it, learn from it and build upon it under the terms of the MIT License.
 
+## Tutorial
+
+Want to learn how I built Modernkythera?
+
+I've created a mini tutorial showing how I made this interactive astronomical clock. The tutorial is available on Patreon behind a paywall.
+
+**[📖 Read the Modernkythera mini tutorial on Patreon](https://www.patreon.com/Millaceedee/posts/meet-build-your-173601553)** 🔒
+
 ## Original creator
 
 Created by **Millaceedee** in 2026.
