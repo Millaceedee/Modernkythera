@@ -26,7 +26,7 @@ Explore the movements of the Sun, Moon and planets through an interactive astron
 
 Modernkythera calculates all celestial movements, phases, and cycles entirely client-side using native JavaScript. **No APIs, no servers, and no internet connection are required.**
 
-- **Moon Phases & Full Moons:** Powered by Jean Meeus’s *Astronomical Algorithms* (specifically algorithms for lunar phases, such as Chapter 49), which calculates exact full moon times accurate to about a minute.
+- **Moon Phases & Full Moons:** Powered by Jean Meeus’s *Astronomical Algorithms* (specifically algorithms for lunar phases, such as Chapter 49).
 - **Solar & Planetary Positions:** Uses rigorous orbital mechanics and astronomical series approximations to track the Sun, Moon, and visible planets along the zodiac.
 - **Eclipses & Cycles:** Computes Saros and Metonic cycles algorithmically to display historical and future solar and lunar eclipses directly within the mechanism.
 
